@@ -30,20 +30,19 @@ const table = document.querySelector('.table');
 
 table.addEventListener('click', function(event) {
   const currentCard = event.target;
-  if (isCard(currentCard)) {
-    if (cardIsMatched(currentCard)) return;
-    showCard(currentCard);
-    if (previousCard) {
-      if (cardsMatch(currentCard, previousCard)) {
-        markAsMatched(currentCard);
-        markAsMatched(previousCard);
-      } else {
-        hideCard(currentCard);
-        hideCard(previousCard);
-      }
-      previousCard = undefined;
+  if (!isCard(currentCard)) return;
+  if (cardIsMatched(currentCard)) return;
+  showCard(currentCard);
+  if (previousCard) {
+    if (cardsMatch(currentCard, previousCard)) {
+      markAsMatched(currentCard);
+      markAsMatched(previousCard);
     } else {
-      previousCard = currentCard;
+      hideCard(currentCard);
+      hideCard(previousCard);
     }
+    previousCard = undefined;
+  } else {
+    previousCard = currentCard;
   }
 });
