@@ -19,6 +19,7 @@
   width: 125px;
   height: 125px;
   background: #aff;
+  font-size: 0;
   display: flex;
   justify-content: center;
   align-items: center;
