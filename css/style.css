@@ -30,3 +30,7 @@
   background: lightblue;
   font-size: 1em;
 }
+
+.matched {
+  background: lightgreen;
+}
