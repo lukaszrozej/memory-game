@@ -1,5 +1,5 @@
 let previousCard = undefined;
-let moves = 0;
+let movesNumber = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
 
@@ -30,7 +30,7 @@ function cardsMatch(card1, card2) {
 }
 
 function updateScorePanel() {
-  movesCounter.textContent = moves;
+  movesCounter.textContent = movesNumber;
 }
 
 const table = document.querySelector('.table');
@@ -51,7 +51,7 @@ table.addEventListener('click', function(event) {
     previousCard = undefined;
   } else {
     previousCard = currentCard;
-    moves++;
+    movesNumber++;
     updateScorePanel();
   }
 });
