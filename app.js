@@ -1,6 +1,8 @@
 let previousCard = undefined;
 let moves = 0;
 
+const movesCounter = document.querySelector('.moves');
+
 function isCard(element) {
   return element.classList.contains('card');
 }
@@ -27,6 +29,10 @@ function cardsMatch(card1, card2) {
   return card1.dataset.card === card2.dataset.card;
 }
 
+function updateScorePanel() {
+  movesCounter.textContent = moves;
+}
+
 const table = document.querySelector('.table');
 
 table.addEventListener('click', function(event) {
@@ -46,5 +52,6 @@ table.addEventListener('click', function(event) {
   } else {
     previousCard = currentCard;
     moves++;
+    updateScorePanel();
   }
 });
