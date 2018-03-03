@@ -1,4 +1,5 @@
 let previousCard = undefined;
+let moves = 0;
 
 function isCard(element) {
   return element.classList.contains('card');
@@ -44,5 +45,6 @@ table.addEventListener('click', function(event) {
     previousCard = undefined;
   } else {
     previousCard = currentCard;
+    moves++;
   }
 });
