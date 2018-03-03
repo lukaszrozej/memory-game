@@ -18,11 +18,11 @@
 .card {
   width: 125px;
   height: 125px;
+  background: #aff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.back {
-  background: #aff;
+.show {
 }
