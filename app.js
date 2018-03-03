@@ -1,5 +1,9 @@
 let previousCard = undefined;
 
+function isCard(element) {
+  return element.classList.contains('card');
+}
+
 function showCard(card) {
   card.classList.add('show');
 }
@@ -25,8 +29,8 @@ function cardsMatch(card1, card2) {
 const table = document.querySelector('.table');
 
 table.addEventListener('click', function(event) {
-  if (event.target.nodeName === 'LI') {
-    const currentCard = event.target;
+  const currentCard = event.target;
+  if (isCard(currentCard)) {
     if (cardIsMatched(currentCard)) return;
     showCard(currentCard);
     if (previousCard) {
