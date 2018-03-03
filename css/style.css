@@ -8,7 +8,7 @@
   width: 300px;
   height: 300px;
   margin: 2em auto;
-  background: gray;
+  background: lightgray;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -18,7 +18,8 @@
 .card {
   width: 125px;
   height: 125px;
-  background: #aff;
+  background: #afa;
+  background: black;
   font-size: 0;
   display: flex;
   justify-content: center;
@@ -26,4 +27,6 @@
 }
 
 .show {
+  background: lightblue;
+  font-size: 1em;
 }
