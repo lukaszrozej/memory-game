@@ -9,6 +9,15 @@
   margin: 1em auto;
 }
 
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.lost {
+  color: lightgray;
+}
+
 .table {
   width: 300px;
   height: 300px;
