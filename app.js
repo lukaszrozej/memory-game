@@ -75,7 +75,10 @@ function starsFromMoves(numberOfMoves) {
 
 function updateStars() {
   numberOfStars = starsFromMoves(numberOfMoves);
-  if (numberOfStars > 2) return;
+  if (numberOfStars === 3) {
+    stars.forEach(star => star.classList.remove('lost'));
+    return;
+  }
   stars[numberOfStars].classList.add('lost');
 }
 
