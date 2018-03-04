@@ -53,6 +53,6 @@ li {
   display: none;
 }
 
-.open {
+.win.show {
   display: block;
 }
