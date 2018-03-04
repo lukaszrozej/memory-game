@@ -4,6 +4,8 @@ let numberOfStars = 3;
 let numberOfCards = 8;
 let numberOfMatched = 0;
 
+const cards = document.querySelectorAll('.card');
+
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.win');
@@ -25,7 +27,10 @@ function generateRandomOrder(n) {
 }
 
 function dealCards(order) {
-  console.log('dealCards')
+  for(let i = 0; i < order.length; i++) {
+    cards[i].dataset.card = order[i].toString();
+    cards[i].textContent = order[i].toString();
+  }
 }
 
 function initGame() {
