@@ -19,8 +19,8 @@ li {
 }
 
 .table {
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   margin: 2em auto;
   background: lightgray;
   display: flex;
@@ -30,8 +30,8 @@ li {
 }
 
 .card {
-  width: 125px;
-  height: 125px;
+  width: calc(85% / 4);
+  height: calc(85% / 4);
   background: #afa;
   background: black;
   font-size: 0;
