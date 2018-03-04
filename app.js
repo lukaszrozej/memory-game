@@ -1,6 +1,6 @@
 let previousCard = undefined;
 let numberOfMoves = 0;
-let numberOfCards = 2;
+let numberOfCards = 8;
 let numberOfMatched = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
