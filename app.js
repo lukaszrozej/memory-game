@@ -2,6 +2,7 @@ let previousCard = undefined;
 let movesNumber = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
+const stars = document.querySelectorAll('star');
 
 function isCard(element) {
   return element.classList.contains('card');
