@@ -1,3 +1,4 @@
+let gameHasStarted = false;
 let previousCard = undefined;
 let numberOfMoves = 0;
 let numberOfStars = 3;
@@ -69,6 +70,7 @@ function initGame() {
   const order = generateRandomOrder(numberOfCards)
   dealCards(order);
 
+  gameHasStarted = false;
   previousCard = undefined;
   numberOfMoves = 0;
   numberOfStars = 3;
