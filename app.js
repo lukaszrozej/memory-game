@@ -11,8 +11,26 @@ const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const playAgainButton = document.querySelector('.play-again');
 
+function generateRandomorder() {
+  console.log('generateRandomorder')
+}
+
+function dealCards(order) {
+  console.log('dealCards')
+}
+
 function initGame() {
-  console.log('init game');
+  const order = generateRandomorder()
+  dealCards(order);
+
+  previousCard = undefined;
+  numberOfMoves = 0;
+  numberOfStars = 3;
+  numberOfCards = 8;
+  numberOfMatched = 0;
+
+  updateStars();
+  updateScorePanel();
 }
 
 playAgainButton.addEventListener('click', function() {
