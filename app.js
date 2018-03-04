@@ -61,10 +61,14 @@ function showCard(card) {
   card.classList.add('show');
 }
 
-function hideCard(card) {
-  setTimeout(function() {
+function hideCard(card, options = {delay: false}) {
+  if (options.delay) {
+    setTimeout(function() {
+      card.classList.remove('show', 'matched');
+    }, 1000);
+  } else {
     card.classList.remove('show', 'matched');
-  }, 1000);
+  }
 }
 
 function markAsMatched(card) {
@@ -124,8 +128,8 @@ table.addEventListener('click', function(event) {
       markAsMatched(previousCard);
       numberOfMatched++;
     } else {
-      hideCard(currentCard);
-      hideCard(previousCard);
+      hideCard(currentCard, {delay: true});
+      hideCard(previousCard, {delay: true});
     }
     previousCard = undefined;
   } else {
