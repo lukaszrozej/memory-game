@@ -17,6 +17,7 @@ function initGame() {
 
 playAgainButton.addEventListener('click', function() {
   initGame();
+  hideWinMessage();
 });
 
 function isCard(element) {
@@ -68,6 +69,10 @@ function showWinMessage() {
   finalMovesSpan.textContent = numberOfMoves.toString();
   finalStarsSpan.textContent = numberOfStars.toString();
   winModal.classList.add('show');
+}
+
+function hideWinMessage() {
+  winModal.classList.remove('show');
 }
 
 const table = document.querySelector('.table');
