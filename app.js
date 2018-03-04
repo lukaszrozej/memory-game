@@ -12,6 +12,7 @@ const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.win');
 const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
+const finalTime = document.querySelector('.final-time');
 const playAgainButton = document.querySelector('.play-again');
 
 function initializeTimer(element) {
@@ -144,6 +145,7 @@ function updateScorePanel() {
 function showWinMessage() {
   finalMovesSpan.textContent = numberOfMoves.toString();
   finalStarsSpan.textContent = numberOfStars.toString();
+  finalTime.textContent = timer.value().toString();
   winModal.classList.add('show');
 }
 
