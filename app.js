@@ -13,6 +13,37 @@ const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const playAgainButton = document.querySelector('.play-again');
 
+function initializeTimer(element) {
+  let startTime = 0;
+  let elapsedTime = 0;
+  let intervalId;
+
+  function display() {
+      element.textContent = Math.round((Date.now() - startTime) / 1000).toString();
+  }
+
+  return {
+    start() {
+      startTime = Date.now();
+      intervalId = setInterval(display, 1000);
+    },
+
+    stop() {
+      clearInterval(intervalId);
+      elapsedTime = Math.round((Date.now() - startTime) / 1000);
+      element.textContent = elapsedTime.toString();
+    },
+
+    reset() {
+      element.textContent = '0';
+    },
+
+    value() {
+      return elapsedTime;
+    }
+  };
+}
+
 function generateRandomOrder(n) {
   const order = [...Array(n).keys(), ...Array(n).keys()];
   // shuffle:
