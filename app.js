@@ -11,8 +11,17 @@ const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const playAgainButton = document.querySelector('.play-again');
 
-function generateRandomorder() {
-  console.log('generateRandomorder')
+function generateRandomOrder(n) {
+  const order = [...Array(n).keys(), ...Array(n).keys()];
+  // shuffle:
+  for(let i = order.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = order[i];
+    order[i] = order[j];
+    order[j] = temp;
+  }
+
+  return order;
 }
 
 function dealCards(order) {
@@ -20,7 +29,7 @@ function dealCards(order) {
 }
 
 function initGame() {
-  const order = generateRandomorder()
+  const order = generateRandomOrder(numberOfCards)
   dealCards(order);
 
   previousCard = undefined;
