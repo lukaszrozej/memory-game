@@ -2,7 +2,7 @@ let previousCard = undefined;
 let movesNumber = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
-const stars = document.querySelectorAll('star');
+const stars = document.querySelectorAll('.star');
 
 function isCard(element) {
   return element.classList.contains('card');
@@ -30,6 +30,21 @@ function cardsMatch(card1, card2) {
   return card1.dataset.card === card2.dataset.card;
 }
 
+function starsFromMoves(numberOfMoves) {
+  const tresholds = [3, 6, 9];
+  let i;
+  for(i = 0; i < tresholds.length; i++) {
+    if (numberOfMoves < tresholds[i]) break;
+  }
+  return 3 - i;
+}
+
+function updateStars() {
+  const numberOfStars = starsFromMoves(movesNumber);
+  if (numberOfStars > 2) return;
+  stars[numberOfStars].classList.add('lost');
+}
+
 function updateScorePanel() {
   movesCounter.textContent = movesNumber;
 }
@@ -54,5 +69,6 @@ table.addEventListener('click', function(event) {
     previousCard = currentCard;
     movesNumber++;
     updateScorePanel();
+    updateStars();
   }
 });
