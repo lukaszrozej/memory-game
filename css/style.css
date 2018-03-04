@@ -40,12 +40,12 @@ li {
   align-items: center;
 }
 
-.show {
+.card.show {
   background: lightblue;
   font-size: 1em;
 }
 
-.matched {
+.card.matched {
   background: lightgreen;
 }
 
