@@ -1,5 +1,6 @@
 let previousCard = undefined;
 let numberOfMoves = 0;
+let numberOfMatched = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
@@ -60,6 +61,7 @@ table.addEventListener('click', function(event) {
     if (cardsMatch(currentCard, previousCard)) {
       markAsMatched(currentCard);
       markAsMatched(previousCard);
+      numberOfMatched++;
     } else {
       hideCard(currentCard);
       hideCard(previousCard);
