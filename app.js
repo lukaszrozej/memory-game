@@ -45,6 +45,8 @@ function initializeTimer(element) {
   };
 }
 
+const timer = initializeTimer(document.querySelector('.time'));
+
 function generateRandomOrder(n) {
   const order = [...Array(n).keys(), ...Array(n).keys()];
   // shuffle:
@@ -77,6 +79,7 @@ function initGame() {
   numberOfCards = 8;
   numberOfMatched = 0;
 
+  timer.reset();
   updateStars();
   updateScorePanel();
 }
@@ -154,6 +157,12 @@ table.addEventListener('click', function(event) {
   const currentCard = event.target;
   if (!isCard(currentCard)) return;
   if (cardIsMatched(currentCard)) return;
+
+  if (!gameHasStarted) {
+    gameHasStarted = true;
+    timer.start();
+  }
+
   showCard(currentCard);
   if (previousCard) {
     if (cardsMatch(currentCard, previousCard)) {
@@ -172,6 +181,7 @@ table.addEventListener('click', function(event) {
     updateStars();
   }
   if (numberOfMatched === numberOfCards) {
+    timer.stop();
     showWinMessage();
   }
 });
