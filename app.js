@@ -1,5 +1,5 @@
 let previousCard = undefined;
-let movesNumber = 0;
+let numberOfMoves = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
@@ -40,13 +40,13 @@ function starsFromMoves(numberOfMoves) {
 }
 
 function updateStars() {
-  const numberOfStars = starsFromMoves(movesNumber);
+  const numberOfStars = starsFromMoves(numberOfMoves);
   if (numberOfStars > 2) return;
   stars[numberOfStars].classList.add('lost');
 }
 
 function updateScorePanel() {
-  movesCounter.textContent = movesNumber;
+  movesCounter.textContent = numberOfMoves;
 }
 
 const table = document.querySelector('.table');
@@ -67,7 +67,7 @@ table.addEventListener('click', function(event) {
     previousCard = undefined;
   } else {
     previousCard = currentCard;
-    movesNumber++;
+    numberOfMoves++;
     updateScorePanel();
     updateStars();
   }
