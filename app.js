@@ -28,6 +28,7 @@ function generateRandomOrder(n) {
 
 function dealCards(order) {
   for(let i = 0; i < order.length; i++) {
+    hideCard(cards[i]);
     cards[i].dataset.card = order[i].toString();
     cards[i].textContent = order[i].toString();
   }
@@ -62,7 +63,7 @@ function showCard(card) {
 
 function hideCard(card) {
   setTimeout(function() {
-    card.classList.remove('show');
+    card.classList.remove('show', 'matched');
   }, 1000);
 }
 
