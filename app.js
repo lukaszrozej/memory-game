@@ -1,5 +1,6 @@
 let previousCard = undefined;
 let numberOfMoves = 0;
+let numberOfCards = 2;
 let numberOfMatched = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
@@ -72,5 +73,8 @@ table.addEventListener('click', function(event) {
     numberOfMoves++;
     updateScorePanel();
     updateStars();
+  }
+  if (numberOfMatched === numberOfCards) {
+    console.log('WIN');
   }
 });
