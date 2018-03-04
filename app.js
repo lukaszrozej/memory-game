@@ -1,10 +1,14 @@
 let previousCard = undefined;
 let numberOfMoves = 0;
+let numberOfStars = 3;
 let numberOfCards = 8;
 let numberOfMatched = 0;
 
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
+const winModal = document.querySelector('.win');
+const finalMovesSpan = document.querySelector('.final-moves');
+const finalStarsSpan = document.querySelector('.final-stars');
 
 function isCard(element) {
   return element.classList.contains('card');
@@ -42,13 +46,19 @@ function starsFromMoves(numberOfMoves) {
 }
 
 function updateStars() {
-  const numberOfStars = starsFromMoves(numberOfMoves);
+  numberOfStars = starsFromMoves(numberOfMoves);
   if (numberOfStars > 2) return;
   stars[numberOfStars].classList.add('lost');
 }
 
 function updateScorePanel() {
   movesCounter.textContent = numberOfMoves;
+}
+
+function showWinMessage() {
+  finalMovesSpan.textContent = numberOfMoves.toString();
+  finalStarsSpan.textContent = numberOfStars.toString();
+  winModal.classList.add('show');
 }
 
 const table = document.querySelector('.table');
@@ -75,6 +85,6 @@ table.addEventListener('click', function(event) {
     updateStars();
   }
   if (numberOfMatched === numberOfCards) {
-    console.log('WIN');
+    showWinMessage();
   }
 });
