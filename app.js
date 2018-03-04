@@ -9,6 +9,15 @@ const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.win');
 const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
+const playAgainButton = document.querySelector('.play-again');
+
+function initGame() {
+  console.log('init game');
+}
+
+playAgainButton.addEventListener('click', function() {
+  initGame();
+});
 
 function isCard(element) {
   return element.classList.contains('card');
