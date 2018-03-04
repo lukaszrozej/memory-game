@@ -48,3 +48,11 @@ li {
 .matched {
   background: lightgreen;
 }
+
+.win {
+  display: none;
+}
+
+.open {
+  display: block;
+}
