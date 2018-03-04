@@ -46,7 +46,7 @@ function initializeTimer(element) {
   };
 }
 
-const timer = initializeTimer(document.querySelector('.timer .time'));
+const timer = initializeTimer(document.querySelector('.time'));
 
 function generateRandomOrder(n) {
   const order = [...Array(n).keys(), ...Array(n).keys()];
