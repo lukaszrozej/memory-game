@@ -124,6 +124,10 @@ function cardsMatch(card1, card2) {
   return card1.dataset.card === card2.dataset.card;
 }
 
+function cardIsFlipped(card) {
+  return card.classList.contains('show');
+}
+
 function starsFromMoves(numberOfMoves) {
   const tresholds = [3, 6, 9];
   let i;
@@ -168,6 +172,8 @@ table.addEventListener('click', function(event) {
     gameHasStarted = true;
     timer.start();
   }
+
+  if (cardIsFlipped(currentCard)) return;
 
   showCard(currentCard);
   if (previousCard) {
