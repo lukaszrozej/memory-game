@@ -14,6 +14,7 @@ const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
 const playAgainButton = document.querySelector('.play-again');
+const restartButton = document.querySelector('.restart');
 
 function initializeTimer(element) {
   let startTime = 0;
@@ -80,6 +81,7 @@ function initGame() {
   numberOfCards = 8;
   numberOfMatched = 0;
 
+  timer.stop();
   timer.reset();
   updateStars();
   updateScorePanel();
@@ -89,6 +91,8 @@ playAgainButton.addEventListener('click', function() {
   initGame();
   hideWinMessage();
 });
+
+restartButton.addEventListener('click', initGame);
 
 function isCard(element) {
   return element.classList.contains('card');
