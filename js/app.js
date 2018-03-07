@@ -15,6 +15,7 @@ const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
 const playAgainButton = document.querySelector('.play-again');
 const restartButton = document.querySelector('.restart');
+const table = document.querySelector('.table');
 
 function initializeTimer(element) {
   let startTime = 0;
@@ -65,8 +66,12 @@ function generateRandomOrder(n) {
 function dealCards(order) {
   for(let i = 0; i < order.length; i++) {
     hideCard(cards[i]);
+    const cardId = decks[0].cards[order[i]];
     cards[i].dataset.card = order[i].toString();
-    cards[i].textContent = order[i].toString();
+    cards[i].innerHTML = `
+      <svg class="icon">
+        <use xlink:href="svg/robots.svg#${cardId}"></use>
+      </svg>`;
   }
 }
 
@@ -86,6 +91,8 @@ function initGame() {
   updateStars();
   updateScorePanel();
 }
+
+initGame();
 
 playAgainButton.addEventListener('click', function() {
   initGame();
@@ -160,8 +167,6 @@ function showWinMessage() {
 function hideWinMessage() {
   winModal.classList.remove('show');
 }
-
-const table = document.querySelector('.table');
 
 table.addEventListener('click', function(event) {
   const currentCard = event.target;
