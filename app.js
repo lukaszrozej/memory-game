@@ -15,6 +15,7 @@ const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
 const playAgainButton = document.querySelector('.play-again');
 const restartButton = document.querySelector('.restart');
+const table = document.querySelector('.table');
 
 function initializeTimer(element) {
   let startTime = 0;
@@ -160,8 +161,6 @@ function showWinMessage() {
 function hideWinMessage() {
   winModal.classList.remove('show');
 }
-
-const table = document.querySelector('.table');
 
 table.addEventListener('click', function(event) {
   const currentCard = event.target;
