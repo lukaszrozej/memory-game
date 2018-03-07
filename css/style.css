@@ -34,16 +34,31 @@ li {
   height: calc(85% / 4);
   background: #afa;
   background: black;
-  font-size: 0;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card .icon {
+  display: none;
 }
 
 .card.show {
   background: lightblue;
   font-size: 1em;
 }
+
+.card.show .icon {
+  display: block;
+  width: 80%;
+  height: 80%;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+
+}
+
 
 .card.matched {
   background: lightgreen;

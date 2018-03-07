@@ -24,7 +24,11 @@
   </section>
 
   <ul class="table">
-    <li class="card" data-card="1">1</li>
+    <li class="card" data-card="1">
+      <svg class="icon">
+        <use xlink:href="svg/robots.svg#robot-1"></use>
+      </svg>
+    </li>
     <li class="card" data-card="2">2</li>
     <li class="card" data-card="3">3</li>
     <li class="card" data-card="4">4</li>
@@ -45,10 +49,8 @@
   <button class="restart">Restart</button>
 
   <section class="win">
-    Congratulations, you won the game
-    in <span class="final-time"></span> seconds using
-    <span class="final-moves"></span> moves.
-    Your star rating is
+    Congratulations, you won the game in <span class="final-time"></span> seconds using
+    <span class="final-moves"></span> moves. Your star rating is
     <span class="final-stars"></span>/3.
     <button class="play-again">Play again</button>
   </section>
