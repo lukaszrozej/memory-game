@@ -33,7 +33,7 @@ li {
   width: calc(85% / 4);
   height: calc(85% / 4);
   background: #afa;
-  background: black;
+  background: #765 url('../svg/question-mark.svg') no-repeat center;
   color: black;
   display: flex;
   justify-content: center;
