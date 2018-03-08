@@ -47,6 +47,7 @@ li {
   justify-content: center;
   align-items: center;
   color: black;
+  transition: transform 1s;
 }
 
 .card .back {
