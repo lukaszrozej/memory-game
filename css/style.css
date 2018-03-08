@@ -30,37 +30,53 @@ li {
 }
 
 .card {
+  position: relative;
   width: calc(85% / 4);
   height: calc(85% / 4);
-  background: #afa;
-  background: #765 url('../svg/question-mark.svg') no-repeat center;
-  color: black;
+}
+
+.back,
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: black;
+}
+
+.card .back {
+  background: #765;
+  transform: rotateY(0);
+}
+
+.card .front {
+  background: lightblue;
+  transform: rotateY(180deg);
+}
+
+.card.show .back {
+  transform: rotateY(-180deg);
+}
+
+.card.show .front {
+  transform: rotateY(0);
 }
 
 .card .icon {
-  display: none;
-}
-
-.card.show {
-  background: lightblue;
-  font-size: 1em;
-}
-
-.card.show .icon {
   display: block;
   width: 80%;
   height: 80%;
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
-
 }
 
-
-.card.matched {
+.card.show.matched .front {
   background: lightgreen;
 }
 

@@ -68,10 +68,21 @@ function dealCards(order) {
     hideCard(cards[i]);
     const cardId = decks[0].cards[order[i]];
     cards[i].dataset.card = order[i].toString();
+    // cards[i].innerHTML = `
+    //   <svg class="icon">
+    //     <use xlink:href="svg/robots.svg#${cardId}"></use>
+    //   </svg>`;
     cards[i].innerHTML = `
-      <svg class="icon">
-        <use xlink:href="svg/robots.svg#${cardId}"></use>
-      </svg>`;
+      <div class="back">
+        <svg class="icon">
+          <use xlink:href="svg/question-mark.svg#question-mark"></use>
+        </svg>
+      </div>
+      <div class="front">
+        <svg class="icon">
+          <use xlink:href="svg/robots.svg#${cardId}"></use>
+        </svg>
+      </div>`;
   }
 }
 
