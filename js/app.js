@@ -112,10 +112,6 @@ playAgainButton.addEventListener('click', function() {
 
 restartButton.addEventListener('click', initGame);
 
-function isCard(element) {
-  return element.classList.contains('card');
-}
-
 function showCard(card) {
   card.classList.add('show');
 }
@@ -180,8 +176,8 @@ function hideWinMessage() {
 }
 
 table.addEventListener('click', function(event) {
-  const currentCard = event.target;
-  if (!isCard(currentCard)) return;
+  const currentCard = event.target.closest('.card');
+  if (!currentCard) return;
   if (cardIsMatched(currentCard)) return;
 
   if (!gameHasStarted) {
