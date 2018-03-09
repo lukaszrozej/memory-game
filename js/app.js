@@ -108,6 +108,10 @@ playAgainButton.addEventListener('click', function() {
 
 restartButton.addEventListener('click', initGame);
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function showCard(card) {
   return new Promise(function(resolve) {
     function handleTransisionEnd(event) {
@@ -120,14 +124,8 @@ function showCard(card) {
   });
 }
 
-function hideCard(card, options = {delay: false}) {
-  if (options.delay) {
-    setTimeout(function() {
-      card.classList.remove('show', 'matched');
-    }, 1000);
-  } else {
-    card.classList.remove('show', 'matched');
-  }
+function hideCard(card) {
+  card.classList.remove('show', 'matched');
 }
 
 function markAsMatched(card) {
@@ -198,8 +196,9 @@ table.addEventListener('click', async function(event) {
       markAsMatched(previousCard);
       numberOfMatched++;
     } else {
-      hideCard(currentCard, {delay: true});
-      hideCard(previousCard, {delay: true});
+      await sleep(1000);
+      hideCard(currentCard);
+      hideCard(previousCard);
     }
     previousCard = undefined;
   } else {
