@@ -115,7 +115,6 @@ function sleep(ms) {
 function showCard(card) {
   return new Promise(function(resolve) {
     function handleTransisionEnd(event) {
-      console.log('bla');
       card.removeEventListener('transitionend', handleTransisionEnd);
       resolve();
     }
