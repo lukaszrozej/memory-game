@@ -25,8 +25,9 @@ li {
   background: lightgray;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  padding: 2%;
 }
 
 .card {
