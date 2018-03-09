@@ -21,13 +21,15 @@ li {
 .table {
   width: 98vw;
   height: 98vw;
+  max-width: 500px;
+  max-height: 500px;
   margin: 2em auto;
   background: lightgray;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  padding: 2%;
+  padding: 1.5%;
 }
 
 .card {
@@ -88,4 +90,11 @@ li {
 
 .win.show {
   display: block;
+}
+
+@media screen and (orientation: landscape) {
+  .table {
+    width: 98vh;
+    height: 98vh;
+  }
 }
