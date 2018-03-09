@@ -19,8 +19,8 @@ li {
 }
 
 .table {
-  width: 400px;
-  height: 400px;
+  width: 98vw;
+  height: 98vw;
   margin: 2em auto;
   background: lightgray;
   display: flex;
