@@ -1,3 +1,4 @@
+let processingClick = false;
 let gameHasStarted = false;
 let previousCard = undefined;
 let numberOfMoves = 0;
@@ -178,9 +179,9 @@ function hideWinMessage() {
 
 table.addEventListener('click', async function(event) {
   const currentCard = event.target.closest('.card');
-  if (!currentCard) return;
-  if (cardIsMatched(currentCard)) return;
+  if (!currentCard || cardIsMatched(currentCard) || processingClick) return;
 
+  processingClick = true;
   if (!gameHasStarted) {
     gameHasStarted = true;
     timer.start();
@@ -191,9 +192,9 @@ table.addEventListener('click', async function(event) {
   await showCard(currentCard);
   if (previousCard) {
     if (cardsMatch(currentCard, previousCard)) {
+      numberOfMatched++;
       markAsMatched(currentCard);
       markAsMatched(previousCard);
-      numberOfMatched++;
     } else {
       await sleep(1000);
       hideCard(currentCard);
@@ -210,4 +211,5 @@ table.addEventListener('click', async function(event) {
     timer.stop();
     showWinMessage();
   }
+  processingClick = false;
 });
