@@ -109,7 +109,15 @@ playAgainButton.addEventListener('click', function() {
 restartButton.addEventListener('click', initGame);
 
 function showCard(card) {
-  card.classList.add('show');
+  return new Promise(function(resolve) {
+    function handleTransisionEnd(event) {
+      console.log('bla');
+      card.removeEventListener('transitionend', handleTransisionEnd);
+      resolve();
+    }
+    card.addEventListener('transitionend', handleTransisionEnd);
+    card.classList.add('show');
+  });
 }
 
 function hideCard(card, options = {delay: false}) {
@@ -171,7 +179,7 @@ function hideWinMessage() {
   winModal.classList.remove('show');
 }
 
-table.addEventListener('click', function(event) {
+table.addEventListener('click', async function(event) {
   const currentCard = event.target.closest('.card');
   if (!currentCard) return;
   if (cardIsMatched(currentCard)) return;
@@ -183,7 +191,7 @@ table.addEventListener('click', function(event) {
 
   if (cardIsFlipped(currentCard)) return;
 
-  showCard(currentCard);
+  await showCard(currentCard);
   if (previousCard) {
     if (cardsMatch(currentCard, previousCard)) {
       markAsMatched(currentCard);
