@@ -91,6 +91,7 @@ function dealCards(order) {
 }
 
 function initGame() {
+  if (processingClick) return;
   const order = generateRandomOrder(numberOfCards)
   dealCards(order);
 
