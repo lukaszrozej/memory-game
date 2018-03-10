@@ -22,19 +22,26 @@ function initializeTimer(element) {
   let startTime = 0;
   let elapsedTime = 0;
   let intervalId;
+  let running = false;
 
   function display() {
       element.textContent = Math.round((Date.now() - startTime) / 1000).toString();
   }
 
   return {
+    isRunning() {
+      return running;
+    },
+
     start() {
       startTime = Date.now();
       intervalId = setInterval(display, 1000);
+      running = true;
     },
 
     stop() {
       clearInterval(intervalId);
+      running = false;
       elapsedTime = Math.round((Date.now() - startTime) / 1000);
       element.textContent = elapsedTime.toString();
     },
@@ -182,8 +189,7 @@ table.addEventListener('click', async function(event) {
   if (!currentCard || cardIsMatched(currentCard) || processingClick) return;
 
   processingClick = true;
-  if (!isPlaying) {
-    isPlaying = true;
+  if (!timer.isRunning()) {
     timer.start();
   }
 
@@ -208,6 +214,7 @@ table.addEventListener('click', async function(event) {
     updateStars();
   }
   if (numberOfMatched === numberOfCards) {
+    isPlaying = false;
     timer.stop();
     showWinMessage();
   }
