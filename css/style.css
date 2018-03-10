@@ -4,11 +4,6 @@
   padding: 0;
 }
 
-.score-panel {
-  width: 300px;
-  margin: 1em auto;
-}
-
 li {
   list-style: none;
   display: inline-block;
@@ -23,7 +18,7 @@ li {
   height: 98vw;
   max-width: 500px;
   max-height: 500px;
-  margin: 2em auto;
+  margin: 0 auto;
   background: lightgray;
   display: flex;
   flex-wrap: wrap;
@@ -150,8 +145,18 @@ li {
   animation-fill-mode: both;
 }
 
+/*********************/
+/* Modals */
 
-
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: white;
+  width: 100vw;
+  height: 100vh;
+}
 
 .win {
   display: none;
@@ -161,9 +166,30 @@ li {
   display: block;
 }
 
+/*********************/
+/* Layout */
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
 @media screen and (orientation: landscape) {
+  body {
+    height: 100vh;
+  }
+
+  header, 
+  .score-panel,
+  footer {
+    height: 30%;
+    width: calc(100% - 100vh);
+  }
+
   .table {
     width: 98vh;
     height: 98vh;
+    order: 1;
   }
 }
