@@ -135,7 +135,14 @@ function hideCard(card) {
 }
 
 function markAsMatched(card) {
-  card.classList.add('matched');
+  return new Promise(function(resolve) {
+    function handleAnimationEnd(event) {
+      card.removeEventListener('animationend', handleAnimationEnd);
+      resolve();
+    }
+    card.addEventListener('animationend', handleAnimationEnd);
+    card.classList.add('matched');
+  });
 }
 
 function signalNoMatch(card) {
@@ -208,8 +215,14 @@ table.addEventListener('click', async function(event) {
   if (previousCard) {
     if (cardsMatch(currentCard, previousCard)) {
       numberOfMatched++;
-      markAsMatched(currentCard);
-      markAsMatched(previousCard);
+      await Promise.all([
+        markAsMatched(currentCard),
+        markAsMatched(previousCard)
+      ]);
+      if (numberOfMatched === numberOfCards) {
+        timer.stop();
+        showWinMessage();
+      }
     } else {
       await Promise.all([
         signalNoMatch(currentCard),
@@ -224,10 +237,6 @@ table.addEventListener('click', async function(event) {
     numberOfMoves++;
     updateScorePanel();
     updateStars();
-  }
-  if (numberOfMatched === numberOfCards) {
-    timer.stop();
-    showWinMessage();
   }
   processingClick = false;
 });
