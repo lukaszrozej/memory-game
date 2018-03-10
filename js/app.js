@@ -1,5 +1,5 @@
 let processingClick = false;
-let gameHasStarted = false;
+let isPlaying = false;
 let previousCard = undefined;
 let numberOfMoves = 0;
 let numberOfStars = 3;
@@ -87,7 +87,7 @@ function initGame() {
   const order = generateRandomOrder(numberOfCards)
   dealCards(order);
 
-  gameHasStarted = false;
+  isPlaying = false;
   previousCard = undefined;
   numberOfMoves = 0;
   numberOfStars = 3;
@@ -182,8 +182,8 @@ table.addEventListener('click', async function(event) {
   if (!currentCard || cardIsMatched(currentCard) || processingClick) return;
 
   processingClick = true;
-  if (!gameHasStarted) {
-    gameHasStarted = true;
+  if (!isPlaying) {
+    isPlaying = true;
     timer.start();
   }
 
