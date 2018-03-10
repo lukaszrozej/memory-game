@@ -140,6 +140,18 @@ function markAsMatched(card) {
   card.classList.add('matched');
 }
 
+function signalNoMatch(card) {
+  return new Promise(function(resolve) {
+    function handleAnimationEnd(event) {
+      card.removeEventListener('animationend', handleAnimationEnd);
+      card.classList.remove('not-matched');
+      resolve();
+    }
+    card.addEventListener('animationend', handleAnimationEnd);
+    card.classList.add('not-matched');
+  });
+}
+
 function cardIsMatched(card) {
   return card.classList.contains('matched');
 }
@@ -203,7 +215,10 @@ table.addEventListener('click', async function(event) {
       markAsMatched(currentCard);
       markAsMatched(previousCard);
     } else {
-      await sleep(1000);
+      await Promise.all([
+        signalNoMatch(currentCard),
+        signalNoMatch(previousCard)
+      ]);
       hideCard(currentCard);
       hideCard(previousCard);
     }
