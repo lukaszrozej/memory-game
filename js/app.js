@@ -1,5 +1,4 @@
 let processingClick = false;
-let isPlaying = false;
 let previousCard = undefined;
 let numberOfMoves = 0;
 let numberOfStars = 3;
@@ -95,7 +94,6 @@ function initGame() {
   const order = generateRandomOrder(numberOfCards)
   dealCards(order);
 
-  isPlaying = false;
   previousCard = undefined;
   numberOfMoves = 0;
   numberOfStars = 3;
@@ -230,7 +228,6 @@ table.addEventListener('click', async function(event) {
     updateStars();
   }
   if (numberOfMatched === numberOfCards) {
-    isPlaying = false;
     timer.stop();
     showWinMessage();
   }
