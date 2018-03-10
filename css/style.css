@@ -120,6 +120,7 @@ li {
   from,
   to {
     transform: translate3d(0, 0, 0);
+    background-color: #add8e6;
   }
 
   10%,
@@ -135,6 +136,11 @@ li {
   60%,
   80% {
     transform: translate3d(10px, 0, 0);
+  }
+
+  10%,
+  90% {
+    background-color: #ad4356;
   }
 }
 
