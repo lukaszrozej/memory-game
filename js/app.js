@@ -197,14 +197,12 @@ function hideWinMessage() {
 
 table.addEventListener('click', async function(event) {
   const currentCard = event.target.closest('.card');
-  if (!currentCard || cardIsMatched(currentCard) || processingClick) return;
+  if (!currentCard || cardIsFlipped(currentCard) || processingClick) return;
 
   processingClick = true;
   if (!timer.isRunning()) {
     timer.start();
   }
-
-  if (cardIsFlipped(currentCard)) return;
 
   await showCard(currentCard);
   if (previousCard) {
