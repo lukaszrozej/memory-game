@@ -73,17 +73,17 @@ function generateRandomOrder(n) {
 function dealCards(order) {
   for(let i = 0; i < order.length; i++) {
     hideCard(cards[i]);
-    const cardId = decks[0].cards[order[i]];
+    const cardId = decks[1].cards[order[i]];
     cards[i].dataset.card = order[i].toString();
     cards[i].innerHTML = `
       <div class="back">
         <svg class="icon">
-          <use xlink:href="svg/question-mark.svg#question-mark"></use>
+          <use xlink:href="svg/sprites.svg#question-mark"></use>
         </svg>
       </div>
       <div class="front">
         <svg class="icon">
-          <use xlink:href="svg/robots.svg#${cardId}"></use>
+          <use xlink:href="svg/sprites.svg#${cardId}"></use>
         </svg>
       </div>`;
   }

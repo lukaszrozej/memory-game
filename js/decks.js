@@ -1,25 +1,29 @@
-const decks = [{
-  name: 'robots',
-  cards: [
-    "robot-1",
-    "robot-2",
-    "robot-design",
-    "robot-front",
-    "robot-machine",
-    "robot-monster-of-one-eye",
-    "robot-of-circular-parts",
-    "robot-of-long-arms-and-short-legs",
-    "robot-of-rounded-head",
-    "robot-of-short-spherical-shape",
-    "robot-standing-over-wheels-with-an-antenna-on-the-head",
-    "robot-tool",
-    "robot-with-a-gear",
-    "robot-with-flexible-arms-and-legs",
-    "robot-with-gears",
-    "robot-with-lifeline",
-    "robot",
-    "rounded-robot-design-with-spirals-arms",
-    "short-robot",
-    "small-robot-with-arms-and-legs"
-  ]
-}]
+const decks =
+[
+  {
+    "name": "robots",
+    "cards": [
+      "robot-1",
+      "robot-2",
+      "robot-machine",
+      "robot-monster-of-one-eye",
+      "robot-of-circular-parts",
+      "robot-of-rounded-head",
+      "robot-of-short-spherical-shape",
+      "robot-with-lifeline"
+    ]
+  },
+  {
+    "name": "trees",
+    "cards": [
+      "big-plant-like-a-small-tree",
+      "tree-black-silhouette-shape",
+      "tree-shape-of-thin-trunk-with-small-leaves-circles-outlines",
+      "tree-symmetrical-beautiful-shape-with-many-leaves",
+      "tree-trunk-with-seven-balls-of-foliage",
+      "tree-with-three-circles-of-foliage",
+      "tree",
+      "young-tree-growing-vertical"
+    ]
+  }
+]
