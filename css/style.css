@@ -156,9 +156,19 @@ li {
   position: fixed;
   top: -100vh;
   left: 0;
-  width: 100vw;
+  width: 200vw;
   height: 100vh;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.win-message,
+.choose-deck {
+  width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -173,6 +183,10 @@ li {
 
 .modal.show {
   top: 0;  
+}
+
+.modal.choose {
+  left: -100vw;
 }
 
 /*********************/

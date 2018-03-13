@@ -9,7 +9,7 @@ const cards = document.querySelectorAll('.card');
 
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
-const winModal = document.querySelector('.win');
+const winModal = document.querySelector('.modal');
 const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
