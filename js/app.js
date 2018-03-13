@@ -109,6 +109,10 @@ function initGame() {
 initGame();
 
 playAgainButton.addEventListener('click', function() {
+  winModal.classList.add('choose');
+});
+
+document.querySelector('.play').addEventListener('click', function() {
   initGame();
   hideWinMessage();
 });
