@@ -1,7 +1,6 @@
 let processingClick = false;
 let previousCard = undefined;
 let numberOfMoves = 0;
-let numberOfStars = 3;
 let numberOfCards = 8;
 let numberOfMatched = 0;
 
@@ -96,14 +95,12 @@ function initGame() {
 
   previousCard = undefined;
   numberOfMoves = 0;
-  numberOfStars = 3;
   numberOfCards = 8;
   numberOfMatched = 0;
 
   timer.stop();
   timer.reset();
-  updateStars();
-  updateScorePanel();
+  updateScorePanel(numberOfMoves);
 }
 
 initGame();
@@ -199,8 +196,9 @@ function starsFromMoves(numberOfMoves) {
   return 3 - i;
 }
 
-function updateStars() {
-  numberOfStars = starsFromMoves(numberOfMoves);
+function updateScorePanel(numberOfMoves) {
+  movesCounter.textContent = numberOfMoves;
+  const numberOfStars = starsFromMoves(numberOfMoves);
   if (numberOfStars === 3) {
     stars.forEach(star => star.classList.remove('lost'));
     return;
@@ -208,13 +206,9 @@ function updateStars() {
   stars[numberOfStars].classList.add('lost');
 }
 
-function updateScorePanel() {
-  movesCounter.textContent = numberOfMoves;
-}
-
 function showWinMessage() {
   finalMovesSpan.textContent = numberOfMoves.toString();
-  finalStarsSpan.textContent = numberOfStars.toString();
+  finalStarsSpan.textContent = starsFromMoves(numberOfMoves).toString();
   finalTime.textContent = timer.value().toString();
   winModal.classList.add('show');
 }
@@ -256,8 +250,7 @@ table.addEventListener('click', async function(event) {
   } else {
     previousCard = currentCard;
     numberOfMoves++;
-    updateScorePanel();
-    updateStars();
+    updateScorePanel(numberOfMoves);
   }
   processingClick = false;
 });
