@@ -108,6 +108,19 @@ function initGame() {
 
 initGame();
 
+function addDecksToChooseModal(decks) {
+  const fragment = document.createDocumentFragment();
+  decks.forEach(function(deck, index) {
+    const option = document.createElement('option');
+    option.dataset.deck = index;
+    option.textContent = deck.name;
+    fragment.appendChild(option);
+  });
+  document.querySelector('.decks').appendChild(fragment);
+}
+
+addDecksToChooseModal(decks);
+
 playAgainButton.addEventListener('click', function() {
   winModal.classList.add('choose');
 });
