@@ -112,7 +112,7 @@ function addDecksToChooseModal(decks) {
   const fragment = document.createDocumentFragment();
   decks.forEach(function(deck, index) {
     const option = document.createElement('option');
-    option.dataset.deck = index;
+    option.value = index;
     option.textContent = deck.name;
     fragment.appendChild(option);
   });
@@ -120,6 +120,10 @@ function addDecksToChooseModal(decks) {
 }
 
 addDecksToChooseModal(decks);
+
+document.querySelector('.decks').addEventListener('change', function(event) {
+  console.log(this.value);
+})
 
 playAgainButton.addEventListener('click', function() {
   winModal.classList.add('choose');
