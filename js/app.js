@@ -118,8 +118,25 @@ function addDecksToChooseModal(decks) {
 
 addDecksToChooseModal(decks);
 
+function updateSampleCards() {
+  const deckNumber = document.querySelector('.decks').value;
+  document.querySelector('.sample-cards').innerHTML = 
+    decks[deckNumber]
+      .cards
+      .slice(0,3)
+      .map(card => `
+        <li class="sample-card">
+          <svg class="icon">
+            <use xlink:href="svg/sprites.svg#${card}"></use>
+          </svg>
+        </li>`)
+      .join('\n');
+}
+
+updateSampleCards();
+
 document.querySelector('.decks').addEventListener('change', function(event) {
-  console.log(this.value);
+  updateSampleCards();
 })
 
 playAgainButton.addEventListener('click', function() {
