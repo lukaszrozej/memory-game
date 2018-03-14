@@ -199,6 +199,10 @@ li {
   left: -100vw;
 }
 
+.modal-item {
+  margin: 1em auto;
+}
+
 /*********************/
 /* Layout */
 
