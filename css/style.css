@@ -39,6 +39,7 @@ li {
 
 .card.sample {
   padding-top: calc(85% / 4);
+  margin: 1%;
 }
 
 .sample-cards {
