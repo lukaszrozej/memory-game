@@ -42,8 +42,8 @@ li {
 }
 
 .sample-cards {
-  width: 98vw;
-  height: 30vw;
+  width: 80%;
+  max-width: 500px;
 }
 
 .back,
