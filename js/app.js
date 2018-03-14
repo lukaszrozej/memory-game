@@ -123,12 +123,14 @@ function updateSampleCards() {
   document.querySelector('.sample-cards').innerHTML = 
     decks[deckNumber]
       .cards
-      .slice(0,3)
+      .slice(0,4)
       .map(card => `
-        <li class="sample-card">
-          <svg class="icon">
-            <use xlink:href="svg/sprites.svg#${card}"></use>
-          </svg>
+        <li class="card sample show">
+          <div class="front">
+            <svg class="icon">
+              <use xlink:href="svg/sprites.svg#${card}"></use>
+            </svg>
+          </div>
         </li>`)
       .join('\n');
 }

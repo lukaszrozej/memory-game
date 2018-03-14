@@ -37,6 +37,15 @@ li {
   height: calc(85% / 4);
 }
 
+.card.sample {
+  padding-top: calc(85% / 4);
+}
+
+.sample-cards {
+  width: 98vw;
+  height: 30vw;
+}
+
 .back,
 .front {
   position: absolute;
