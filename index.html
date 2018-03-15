@@ -15,15 +15,22 @@
     <h1>Memory Game</h1>
   </header>
 
+  <button class="restart">Restart</button>
+
   <section class="score-panel">
-    <span class="time">0</span> seconds.
-    <ul class="stars">
-      <li class="star">*</li>
-      <li class="star">*</li>
-      <li class="star">*</li>
-    </ul>
-    <span class="moves-counter">0</span> moves
-    <button class="restart">Restart</button>
+    <p><span class="time">0</span> seconds</p>
+    <p><span class="moves-counter">0</span> moves</p>
+    <div class="stars">
+      <svg class="star">
+        <use xlink:href="svg/sprites.svg#star"></use>
+      </svg>
+      <svg class="star">
+        <use xlink:href="svg/sprites.svg#star"></use>
+      </svg>
+      <svg class="star">
+        <use xlink:href="svg/sprites.svg#star"></use>
+      </svg>
+    </div>
   </section>
 
   <ul class="table">
