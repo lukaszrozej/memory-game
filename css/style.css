@@ -49,13 +49,15 @@ h1 {
   fill: white;
 }
 
+/*********************/
+/* Cards */
+
 .table {
   width: 98vw;
   height: 98vw;
   max-width: 500px;
   max-height: 500px;
   margin: 0 auto;
-  background: lightgray;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -90,17 +92,20 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
   transition: transform 0.3s;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px;
 }
 
 .card .back {
-  background: #765;
+  background: #3f7878;
+  color: rgba(0, 0, 0, 0.3);
   transform: rotateY(0);
 }
 
 .card .front {
-  background: lightblue;
+  background: #7ff2f2;
+  color: rgba(0, 0, 0, 0.7);
   transform: rotateY(180deg);
 }
 
