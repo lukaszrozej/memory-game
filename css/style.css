@@ -8,6 +8,20 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/*********************/
+/* Header */
+
+header {
+  width: 100%;
+  margin: 0.5em auto;
+}
+
+h1 {
+  text-align: center;;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
 li {
   list-style: none;
   display: inline-block;
