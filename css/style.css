@@ -197,6 +197,27 @@ h1 {
 }
 
 /*********************/
+/* Footer */
+
+footer {
+  font-size: 0.8rem;
+  margin: 1rem auto;
+  padding-top: 0.5em;
+  text-align: center;
+  border-top: 1px solid #9cbfb4;
+  width: 90vw;
+}
+
+a {
+  color: #1ac393;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*********************/
 /* Modals */
 
 .modal {
