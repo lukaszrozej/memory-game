@@ -69,10 +69,10 @@ function generateRandomOrder(n) {
   return order;
 }
 
-function dealCards(order) {
+function dealCards(order, deckNumber) {
   for(let i = 0; i < order.length; i++) {
     hideCard(cards[i]);
-    const cardId = decks[1].cards[order[i]];
+    const cardId = decks[deckNumber].cards[order[i]];
     cards[i].dataset.card = order[i].toString();
     cards[i].innerHTML = `
       <div class="back">
@@ -90,8 +90,8 @@ function dealCards(order) {
 
 function initGame() {
   if (processingClick) return;
-  const order = generateRandomOrder(numberOfCards)
-  dealCards(order);
+  const order = generateRandomOrder(numberOfCards);
+  dealCards(order, document.querySelector('.decks').value);
 
   previousCard = undefined;
   numberOfMoves = 0;
@@ -102,8 +102,6 @@ function initGame() {
   timer.reset();
   updateScorePanel(numberOfMoves);
 }
-
-initGame();
 
 function addDecksToChooseModal(decks) {
   const fragment = document.createDocumentFragment();
@@ -117,6 +115,8 @@ function addDecksToChooseModal(decks) {
 }
 
 addDecksToChooseModal(decks);
+
+initGame();
 
 function updateSampleCards() {
   const deckNumber = document.querySelector('.decks').value;
