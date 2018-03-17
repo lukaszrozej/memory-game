@@ -193,7 +193,7 @@ function updateScorePanel(numberOfMoves) {
   stars[numberOfStars].classList.add('lost');
 }
 
-async function showWinMessage() {
+async function showWinMessage(numberOfMoves) {
   finalMovesSpan.textContent = numberOfMoves.toString();
   finalStarsSpan.textContent = starsFromMoves(numberOfMoves).toString();
   finalTime.textContent = timer.value().toString();
@@ -265,7 +265,7 @@ function newGame() {
         ]);
         if (numberOfMatched === numberOfCards) {
           timer.stop();
-          showWinMessage();
+          showWinMessage(numberOfMoves);
         }
       } else {
         await showCard(currentCard);
