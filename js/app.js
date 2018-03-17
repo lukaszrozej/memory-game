@@ -1,8 +1,5 @@
 let processingClick = false;
 let previousCard = undefined;
-let numberOfMoves = 0;
-let numberOfCards = 8;
-let numberOfMatched = 0;
 
 const cards = document.querySelectorAll('.card');
 
@@ -70,36 +67,21 @@ function generateRandomOrder(n) {
 }
 
 function dealCards(order, deckNumber) {
-  for(let i = 0; i < order.length; i++) {
-    hideCard(cards[i]);
-    const cardId = decks[deckNumber].cards[order[i]];
-    cards[i].dataset.card = order[i].toString();
-    cards[i].innerHTML = `
-      <div class="back">
-        <svg class="icon">
-          <use xlink:href="svg/sprites.svg#question-mark"></use>
-        </svg>
-      </div>
-      <div class="front">
-        <svg class="icon">
-          <use xlink:href="svg/sprites.svg#${cardId}"></use>
-        </svg>
-      </div>`;
-  }
-}
-
-function initGame() {
-  const order = generateRandomOrder(numberOfCards);
-  dealCards(order, document.querySelector('.decks').value);
-
-  previousCard = undefined;
-  numberOfMoves = 0;
-  numberOfCards = 8;
-  numberOfMatched = 0;
-
-  timer.stop();
-  timer.reset();
-  updateScorePanel(numberOfMoves);
+  table.innerHTML = order
+    .map(cardNumber => `
+      <li class="card" data-card="${cardNumber}">
+        <div class="back">
+          <svg class="icon">
+            <use xlink:href="svg/sprites.svg#question-mark"></use>
+          </svg>
+        </div>
+        <div class="front">
+          <svg class="icon">
+            <use xlink:href="svg/sprites.svg#${decks[deckNumber].cards[order[cardNumber]]}"></use>
+          </svg>
+        </div>
+      </li>`)
+    .join('\n');
 }
 
 function addDecksToChooseModal(decks) {
@@ -115,7 +97,7 @@ function addDecksToChooseModal(decks) {
 
 addDecksToChooseModal(decks);
 
-initGame();
+// initGame();
 
 function updateSampleCards() {
   const deckNumber = document.querySelector('.decks').value;
@@ -139,25 +121,6 @@ updateSampleCards();
 document.querySelector('.decks').addEventListener('change', function(event) {
   updateSampleCards();
 })
-
-playAgainButton.addEventListener('click', function() {
-  winModal.classList.add('choose');
-});
-
-document.querySelector('.play').addEventListener('click', function() {
-  initGame();
-  hideWinMessage();
-});
-
-restartButton.addEventListener('click', async function() {
-  if (processingClick) return;
-  winModal.classList.add('choose');
-  // Await to let the browser add 'choose' before 'show'
-  // so that only top transition is applied,
-  // not both top and left
-  await sleep(200);
-  winModal.classList.add('show');
-});
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -245,45 +208,89 @@ function hideWinMessage() {
   winModal.classList.remove('show');
 }
 
-const openCards = [];
-let numberOfCLicks = 0;
+playAgainButton.addEventListener('click', function() {
+  winModal.classList.add('choose');
+});
 
-table.addEventListener('click', async function(event) {
-  const currentCard = event.target.closest('.card');
-  if (!currentCard || cardIsFlipped(currentCard)) return;
+document.querySelector('.play').addEventListener('click', function() {
+  game.stop();
+  game = newGame();
+  hideWinMessage();
+});
 
-  if (!timer.isRunning()) {
-    timer.start();
-  }
+restartButton.addEventListener('click', async function() {
+  if (processingClick) return;
+  winModal.classList.add('choose');
+  // Await to let the browser add 'choose' before 'show'
+  // so that only top transition is applied,
+  // not both top and left
+  await sleep(200);
+  winModal.classList.add('show');
+});
 
-  openCards.push(currentCard);
-  numberOfCLicks++;
+function newGame() {
 
-  if (numberOfCLicks % 2 === 0) {
-    numberOfMoves++;
-    const previousCard = openCards[numberOfCLicks-2];
-    if (cardsMatch(currentCard, previousCard)) {
-      numberOfMatched++;
-      await showCard(currentCard);
-      await Promise.all([
-        markAsMatched(currentCard),
-        markAsMatched(previousCard)
-      ]);
-      if (numberOfMatched === numberOfCards) {
-        timer.stop();
-        showWinMessage();
+  const numberOfCards = 8;
+
+  const openCards = [];
+  let numberOfCLicks = 0;
+  let numberOfMoves = 0;
+  let numberOfMatched = 0;
+
+  const order = generateRandomOrder(numberOfCards);
+  dealCards(order, document.querySelector('.decks').value);
+
+  timer.stop();
+  timer.reset();
+  updateScorePanel(numberOfMoves);
+
+  async function clickHandler(event) {
+    const currentCard = event.target.closest('.card');
+    if (!currentCard || cardIsFlipped(currentCard)) return;
+
+    if (!timer.isRunning()) {
+      timer.start();
+    }
+
+    openCards.push(currentCard);
+    numberOfCLicks++;
+
+    if (numberOfCLicks % 2 === 0) {
+      numberOfMoves++;
+      const previousCard = openCards[numberOfCLicks-2];
+      if (cardsMatch(currentCard, previousCard)) {
+        numberOfMatched++;
+        await showCard(currentCard);
+        await Promise.all([
+          markAsMatched(currentCard),
+          markAsMatched(previousCard)
+        ]);
+        if (numberOfMatched === numberOfCards) {
+          timer.stop();
+          showWinMessage();
+        }
+      } else {
+        await showCard(currentCard);
+        await Promise.all([
+          signalNoMatch(currentCard),
+          signalNoMatch(previousCard)
+        ]);
+        hideCard(currentCard);
+        hideCard(previousCard);
       }
     } else {
+      updateScorePanel(numberOfMoves);
       await showCard(currentCard);
-      await Promise.all([
-        signalNoMatch(currentCard),
-        signalNoMatch(previousCard)
-      ]);
-      hideCard(currentCard);
-      hideCard(previousCard);
     }
-  } else {
-    updateScorePanel(numberOfMoves);
-    await showCard(currentCard);
+  };
+
+  table.addEventListener('click', clickHandler);
+
+  function stop() {
+    table.removeEventListener('click', clickHandler);
   }
-});
+
+  return { stop: stop };
+}
+
+let game = newGame();
