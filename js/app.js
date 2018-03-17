@@ -245,19 +245,26 @@ function hideWinMessage() {
   winModal.classList.remove('show');
 }
 
+const openCards = [];
+let numberOfCLicks = 0;
+
 table.addEventListener('click', async function(event) {
   const currentCard = event.target.closest('.card');
-  if (!currentCard || cardIsFlipped(currentCard) || processingClick) return;
+  if (!currentCard || cardIsFlipped(currentCard)) return;
 
-  processingClick = true;
   if (!timer.isRunning()) {
     timer.start();
   }
 
-  await showCard(currentCard);
-  if (previousCard) {
+  openCards.push(currentCard);
+  numberOfCLicks++;
+
+  if (numberOfCLicks % 2 === 0) {
+    numberOfMoves++;
+    const previousCard = openCards[numberOfCLicks-2];
     if (cardsMatch(currentCard, previousCard)) {
       numberOfMatched++;
+      await showCard(currentCard);
       await Promise.all([
         markAsMatched(currentCard),
         markAsMatched(previousCard)
@@ -267,6 +274,7 @@ table.addEventListener('click', async function(event) {
         showWinMessage();
       }
     } else {
+      await showCard(currentCard);
       await Promise.all([
         signalNoMatch(currentCard),
         signalNoMatch(previousCard)
@@ -274,11 +282,8 @@ table.addEventListener('click', async function(event) {
       hideCard(currentCard);
       hideCard(previousCard);
     }
-    previousCard = undefined;
   } else {
-    previousCard = currentCard;
-    numberOfMoves++;
     updateScorePanel(numberOfMoves);
+    await showCard(currentCard);
   }
-  processingClick = false;
 });
