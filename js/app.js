@@ -232,10 +232,12 @@ function updateScorePanel(numberOfMoves) {
   stars[numberOfStars].classList.add('lost');
 }
 
-function showWinMessage() {
+async function showWinMessage() {
   finalMovesSpan.textContent = numberOfMoves.toString();
   finalStarsSpan.textContent = starsFromMoves(numberOfMoves).toString();
   finalTime.textContent = timer.value().toString();
+  winModal.classList.remove('choose');
+  await sleep(200);
   winModal.classList.add('show');
 }
 
