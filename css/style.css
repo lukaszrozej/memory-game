@@ -301,23 +301,33 @@ a:hover {
 
 body {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex-flow: column wrap;
   min-height: 100vh;
   padding-bottom: 5em;
   position: relative;
 }
 
 @media screen and (orientation: landscape) {
+
   body {
-    height: 100vh;
+    max-height: 100vh;
+    padding-bottom: 0;
+    justify-content: space-between;
   }
 
-  header, 
+  footer {
+    position: static;
+  }
+
+  header,
   .score-panel,
   footer {
-    height: 30%;
     width: calc(100% - 100vh);
+  }
+
+  .score-panel {
+    height: 30vh;
+    flex-direction: column;
   }
 
   .table {
