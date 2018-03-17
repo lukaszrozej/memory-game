@@ -1,8 +1,6 @@
 let processingClick = false;
 let previousCard = undefined;
 
-const cards = document.querySelectorAll('.card');
-
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.modal');
@@ -77,7 +75,7 @@ function dealCards(order, deckNumber) {
         </div>
         <div class="front">
           <svg class="icon">
-            <use xlink:href="svg/sprites.svg#${decks[deckNumber].cards[order[cardNumber]]}"></use>
+            <use xlink:href="svg/sprites.svg#${decks[deckNumber].cards[cardNumber]}"></use>
           </svg>
         </div>
       </li>`)
