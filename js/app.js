@@ -185,6 +185,7 @@ document.querySelector('.restart').addEventListener('click', async function() {
   // not both top and left
   await sleep(200);
   winModal.classList.add('show');
+  document.querySelector('.decks').focus();
 });
 
 //-----------------------------------------------------------------------------
