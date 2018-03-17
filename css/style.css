@@ -81,6 +81,8 @@ h1 {
 .card.sample {
   padding-top: calc(85% / 4);
   margin: 1%;
+  width: 15vmin;
+  padding-top: 15vmin;
 }
 
 .sample-cards {
