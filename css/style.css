@@ -130,7 +130,7 @@ h1 {
 
 @keyframes matched {
   from {
-    background-color: #add8e6;
+    background-color: #7ff2f2;
     transform: scale3d(1, 1, 1);
   }
 
@@ -153,7 +153,7 @@ h1 {
   }
 
   to {
-    background-color: #90ee90;
+    background-color: #b6f27f;
     transform: scale3d(1, 1, 1);
   }
 }
@@ -168,7 +168,7 @@ h1 {
   from,
   to {
     transform: translate3d(0, 0, 0);
-    background-color: #add8e6;
+    background-color: #7ff2f2;
   }
 
   10%,
@@ -188,7 +188,7 @@ h1 {
 
   10%,
   90% {
-    background-color: #ad4356;
+    background-color: #f27f7f;
   }
 }
 
