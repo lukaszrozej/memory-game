@@ -9,6 +9,11 @@ body {
   font-size: 16px;
 }
 
+h1,
+h2 {
+  font-weight: normal;
+}
+
 li {
   list-style: none;
   display: inline-block;
@@ -265,6 +270,13 @@ a:hover {
 
 .modal-item {
   margin: 1em auto;
+}
+
+.decks {
+  font-family: 'Open Sans', sans-serif;
+  border: none;
+  padding: 0.5em 2em;
+  border-radius: 5px;
 }
 
 /*********************/
