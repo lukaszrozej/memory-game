@@ -150,7 +150,14 @@ document.querySelector('.play').addEventListener('click', function() {
   hideWinMessage();
 });
 
-restartButton.addEventListener('click', initGame);
+restartButton.addEventListener('click', async function() {
+  winModal.classList.add('choose');
+  // Await to let the browser add 'choose' before 'show'
+  // so that only top transition is applied,
+  // not both top and left
+  await sleep(200);
+  winModal.classList.add('show');
+});
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
