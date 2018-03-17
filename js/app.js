@@ -191,20 +191,14 @@ document.querySelector('.restart').addEventListener('click', async function() {
 //-----------------------------------------------------------------------------
 // Game
 
-function generateRandomOrder(n) {
-  const order = [...Array(n).keys(), ...Array(n).keys()];
-  // shuffle:
+function dealCards(deckNumber, numberOfCards) {
+  // Shuffle:
+  const order = [...Array(numberOfCards).keys(), ...Array(numberOfCards).keys()];
   for(let i = order.length-1; i > 0; i--) {
     const j = Math.floor(Math.random() * i);
-    const temp = order[i];
-    order[i] = order[j];
-    order[j] = temp;
+    [order[i], order[j]] = [order[j], order[i]];
   }
-
-  return order;
-}
-
-function dealCards(order, deckNumber) {
+  // Deal:
   table.innerHTML = order
     .map(cardNumber => `
       <li class="card" data-card="${cardNumber}">
@@ -241,8 +235,7 @@ function newGame() {
   let numberOfMoves = 0;
   let numberOfMatched = 0;
 
-  const order = generateRandomOrder(numberOfCards);
-  dealCards(order, document.querySelector('.decks').value);
+  dealCards(document.querySelector('.decks').value, numberOfCards);
 
   timer.stop();
   timer.reset();
