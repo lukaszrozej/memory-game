@@ -89,7 +89,6 @@ function dealCards(order, deckNumber) {
 }
 
 function initGame() {
-  if (processingClick) return;
   const order = generateRandomOrder(numberOfCards);
   dealCards(order, document.querySelector('.decks').value);
 
@@ -151,6 +150,7 @@ document.querySelector('.play').addEventListener('click', function() {
 });
 
 restartButton.addEventListener('click', async function() {
+  if (processingClick) return;
   winModal.classList.add('choose');
   // Await to let the browser add 'choose' before 'show'
   // so that only top transition is applied,
