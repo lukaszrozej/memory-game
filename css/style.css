@@ -213,6 +213,11 @@ footer {
   text-align: center;
   border-top: 1px solid #9cbfb4;
   width: 90vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
 }
 
 a {
@@ -298,6 +303,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 5em;
+  position: relative;
 }
 
 @media screen and (orientation: landscape) {
