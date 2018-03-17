@@ -179,7 +179,6 @@ document.querySelector('.play').addEventListener('click', function() {
 });
 
 document.querySelector('.restart').addEventListener('click', async function() {
-  if (processingClick) return;
   winModal.classList.add('choose');
   // Await to let the browser add 'choose' before 'show'
   // so that only top transition is applied,
