@@ -233,6 +233,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  transition: all 0.3s;
 }
 
 .win-message,
