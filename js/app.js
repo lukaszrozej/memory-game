@@ -4,8 +4,6 @@ const winModal = document.querySelector('.modal');
 const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
-const playAgainButton = document.querySelector('.play-again');
-const restartButton = document.querySelector('.restart');
 const table = document.querySelector('.table');
 
 //-----------------------------------------------------------------------------
@@ -170,9 +168,9 @@ function hideWinMessage() {
   winModal.classList.remove('show');
 }
 
-playAgainButton.addEventListener('click', function() {
-  winModal.classList.add('choose');
-});
+document.querySelector('.play-again').addEventListener('click', function() {
+    winModal.classList.add('choose');
+  });
 
 document.querySelector('.play').addEventListener('click', function() {
   game.stop();
@@ -180,7 +178,7 @@ document.querySelector('.play').addEventListener('click', function() {
   hideWinMessage();
 });
 
-restartButton.addEventListener('click', async function() {
+document.querySelector('.restart').addEventListener('click', async function() {
   if (processingClick) return;
   winModal.classList.add('choose');
   // Await to let the browser add 'choose' before 'show'
