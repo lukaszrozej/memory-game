@@ -8,6 +8,9 @@ const playAgainButton = document.querySelector('.play-again');
 const restartButton = document.querySelector('.restart');
 const table = document.querySelector('.table');
 
+//-----------------------------------------------------------------------------
+// Timer
+
 function initializeTimer(element) {
   let startTime = 0;
   let elapsedTime = 0;
@@ -48,78 +51,12 @@ function initializeTimer(element) {
 
 const timer = initializeTimer(document.querySelector('.time'));
 
-function generateRandomOrder(n) {
-  const order = [...Array(n).keys(), ...Array(n).keys()];
-  // shuffle:
-  for(let i = order.length-1; i > 0; i--) {
-    const j = Math.floor(Math.random() * i);
-    const temp = order[i];
-    order[i] = order[j];
-    order[j] = temp;
-  }
-
-  return order;
-}
-
-function dealCards(order, deckNumber) {
-  table.innerHTML = order
-    .map(cardNumber => `
-      <li class="card" data-card="${cardNumber}">
-        <div class="back">
-          <svg class="icon">
-            <use xlink:href="svg/sprites.svg#question-mark"></use>
-          </svg>
-        </div>
-        <div class="front">
-          <svg class="icon">
-            <use xlink:href="svg/sprites.svg#${decks[deckNumber].cards[cardNumber]}"></use>
-          </svg>
-        </div>
-      </li>`)
-    .join('\n');
-}
-
-function addDecksToChooseModal(decks) {
-  const fragment = document.createDocumentFragment();
-  decks.forEach(function(deck, index) {
-    const option = document.createElement('option');
-    option.value = index;
-    option.textContent = deck.name;
-    fragment.appendChild(option);
-  });
-  document.querySelector('.decks').appendChild(fragment);
-}
-
-addDecksToChooseModal(decks);
-
-// initGame();
-
-function updateSampleCards() {
-  const deckNumber = document.querySelector('.decks').value;
-  document.querySelector('.sample-cards').innerHTML = 
-    decks[deckNumber]
-      .cards
-      .slice(0,4)
-      .map(card => `
-        <li class="card sample show">
-          <div class="front">
-            <svg class="icon">
-              <use xlink:href="svg/sprites.svg#${card}"></use>
-            </svg>
-          </div>
-        </li>`)
-      .join('\n');
-}
-
-updateSampleCards();
-
-document.querySelector('.decks').addEventListener('change', function(event) {
-  updateSampleCards();
-})
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+//-----------------------------------------------------------------------------
+// Cards
 
 function showCard(card) {
   return new Promise(function(resolve) {
@@ -180,15 +117,45 @@ function starsFromMoves(numberOfMoves) {
   return 3 - i;
 }
 
-function updateScorePanel(numberOfMoves) {
-  movesCounter.textContent = numberOfMoves;
-  const numberOfStars = starsFromMoves(numberOfMoves);
-  if (numberOfStars === 3) {
-    stars.forEach(star => star.classList.remove('lost'));
-    return;
-  }
-  stars[numberOfStars].classList.add('lost');
+//-----------------------------------------------------------------------------
+// Modal
+
+function addDecksToChooseModal(decks) {
+  const fragment = document.createDocumentFragment();
+  decks.forEach(function(deck, index) {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = deck.name;
+    fragment.appendChild(option);
+  });
+  document.querySelector('.decks').appendChild(fragment);
 }
+
+addDecksToChooseModal(decks);
+
+function updateSampleCards() {
+  const deckNumber = document.querySelector('.decks').value;
+  document.querySelector('.sample-cards').innerHTML = 
+    decks[deckNumber]
+      .cards
+      .slice(0,4)
+      .map(card => `
+        <li class="card sample show">
+          <div class="front">
+            <svg class="icon">
+              <use xlink:href="svg/sprites.svg#${card}"></use>
+            </svg>
+          </div>
+        </li>`)
+      .join('\n');
+}
+
+updateSampleCards();
+
+document.querySelector('.decks').addEventListener('change', function(event) {
+  updateSampleCards();
+})
+
 
 async function showWinMessage(numberOfMoves) {
   finalMovesSpan.textContent = numberOfMoves.toString();
@@ -222,6 +189,50 @@ restartButton.addEventListener('click', async function() {
   await sleep(200);
   winModal.classList.add('show');
 });
+
+//-----------------------------------------------------------------------------
+// Game
+
+function generateRandomOrder(n) {
+  const order = [...Array(n).keys(), ...Array(n).keys()];
+  // shuffle:
+  for(let i = order.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = order[i];
+    order[i] = order[j];
+    order[j] = temp;
+  }
+
+  return order;
+}
+
+function dealCards(order, deckNumber) {
+  table.innerHTML = order
+    .map(cardNumber => `
+      <li class="card" data-card="${cardNumber}">
+        <div class="back">
+          <svg class="icon">
+            <use xlink:href="svg/sprites.svg#question-mark"></use>
+          </svg>
+        </div>
+        <div class="front">
+          <svg class="icon">
+            <use xlink:href="svg/sprites.svg#${decks[deckNumber].cards[cardNumber]}"></use>
+          </svg>
+        </div>
+      </li>`)
+    .join('\n');
+}
+
+function updateScorePanel(numberOfMoves) {
+  movesCounter.textContent = numberOfMoves;
+  const numberOfStars = starsFromMoves(numberOfMoves);
+  if (numberOfStars === 3) {
+    stars.forEach(star => star.classList.remove('lost'));
+    return;
+  }
+  stars[numberOfStars].classList.add('lost');
+}
 
 function newGame() {
 
