@@ -1,6 +1,3 @@
-let processingClick = false;
-let previousCard = undefined;
-
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.modal');
