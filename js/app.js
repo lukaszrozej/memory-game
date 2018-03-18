@@ -186,12 +186,18 @@ async function showWinMessage(numberOfMoves) {
   document.querySelector('.play-again').focus();
 }
 
-async function showHelp($button) {
+async function showHelp() {
   $modal.classList.remove('choose');
   $modal.classList.add('help');
   await sleep(200);
   $modal.classList.add('show');
-  $button.focus();
+  $chooseADeck.focus();
+  if (firstHelp) {
+    firstHelp = false;
+    $chooseADeck.classList.add('inactive');
+    $resume.classList.remove('inactive');
+    $resume.focus();
+  }
 }
 
 //-----------------------------------------------------------------------------

@@ -282,6 +282,10 @@ button {
   font-size: 1rem;
 }
 
+.inactive {
+  display: none;
+}
+
 /*********************/
 /* Footer */
 
