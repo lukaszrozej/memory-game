@@ -14,9 +14,8 @@ const $playAgain = document.querySelector('.play-again')
 const $resume = document.querySelector('.resume')
 const $chooseADeck = document.querySelector('.choose-a-deck')
 
-// It will be false after first appearance of help modal
 // It's used to control which button is displayed in help modal
-let firstHelp = true;
+let $buttonInHelpModal = $chooseADeck;
 
 //-----------------------------------------------------------------------------
 // Timer
@@ -163,7 +162,7 @@ document.querySelector('.play').addEventListener('click', function() {
   $modal.classList.remove('show');
 });
 
-// The following two functions use await sleep
+// The following functions use await sleep
 // to wait until browser toggles 'choose' class
 // and changes 'left' in css accordingly
 // so that transition is applied only to top,
@@ -174,6 +173,22 @@ document.querySelector('.restart').addEventListener('click', async function() {
   await sleep(200);
   $modal.classList.add('show');
   $decks.focus();
+});
+
+$chooseADeck.addEventListener('click', async function() {
+  $chooseADeck.classList.add('inactive');
+  $resume.classList.remove('inactive');
+  $buttonInHelpModal = $resume;
+
+  $modal.classList.remove('help');
+  $modal.classList.add('choose');
+  await sleep(200);
+  $modal.classList.add('show');
+  $decks.focus();
+});
+
+$resume.addEventListener('click', function() {
+  $modal.classList.remove('show');
 });
 
 async function showWinMessage(numberOfMoves) {
@@ -191,13 +206,7 @@ async function showHelp() {
   $modal.classList.add('help');
   await sleep(200);
   $modal.classList.add('show');
-  $chooseADeck.focus();
-  if (firstHelp) {
-    firstHelp = false;
-    $chooseADeck.classList.add('inactive');
-    $resume.classList.remove('inactive');
-    $resume.focus();
-  }
+  $buttonInHelpModal.focus();
 }
 
 //-----------------------------------------------------------------------------
