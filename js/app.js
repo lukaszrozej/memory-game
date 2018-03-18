@@ -9,6 +9,10 @@ const $finalStars = document.querySelector('.final-stars');
 const $finalTime = document.querySelector('.final-time');
 const $table = document.querySelector('.table');
 const $decks = document.querySelector('.decks');
+// Buttons:
+const $playAgain = document.querySelector('.play-again')
+const $resume = document.querySelector('.resume')
+const $chooseADeck = document.querySelector('.choose-a-deck')
 
 //-----------------------------------------------------------------------------
 // Timer
