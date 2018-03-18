@@ -115,19 +115,6 @@ function $starsFromMoves(numberOfMoves) {
 //-----------------------------------------------------------------------------
 // Modal
 
-function addDecksToChooseModal(decks) {
-  const fragment = document.createDocumentFragment();
-  decks.forEach(function(deck, index) {
-    const option = document.createElement('option');
-    option.value = index;
-    option.textContent = deck.name;
-    fragment.appendChild(option);
-  });
-  $decks.appendChild(fragment);
-}
-
-addDecksToChooseModal(decks);
-
 function updateSampleCards() {
   const deckNumber = $decks.value;
   document.querySelector('.sample-cards').innerHTML = 
@@ -145,12 +132,17 @@ function updateSampleCards() {
       .join('\n');
 }
 
-updateSampleCards();
+function initializeModal(decks) {
+  $decks.innerHTML =
+    decks
+      .map( (deck, index) => `<option value="${index}">${deck.name}</option>`)
+      .join('/n');
+  updateSampleCards();
+}
 
 $decks.addEventListener('change', function(event) {
   updateSampleCards();
 })
-
 
 async function showWinMessage(numberOfMoves) {
   $finalMoves.textContent = numberOfMoves.toString();
@@ -282,4 +274,5 @@ function newGame() {
   return { stop: stop };
 }
 
+initializeModal(decks);
 let game = newGame();
