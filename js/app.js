@@ -56,53 +56,45 @@ function sleep(ms) {
 //-----------------------------------------------------------------------------
 // Cards
 
-function showCard(card) {
-  return new Promise(function(resolve) {
-    function handleTransisionEnd(event) {
-      card.removeEventListener('transitionend', handleTransisionEnd);
-      resolve();
+function getCard(event) {
+  const card = event.target.closest('.card');
+  if (!card) return undefined;
+
+  return {    
+    show() {
+      return new Promise(function(resolve) {
+        function handleTransisionEnd(event) {
+          card.removeEventListener('transitionend', handleTransisionEnd);
+          resolve();
+        }
+        card.addEventListener('transitionend', handleTransisionEnd);
+        card.classList.add('show');
+      });
+    },
+
+    hide() {
+      card.classList.remove('show', 'not-matched', 'matched');
+    },
+
+    markAs(status) {
+      return new Promise(function(resolve) {
+        function handleAnimationEnd(event) {
+          card.removeEventListener('animationend', handleAnimationEnd);
+          resolve();
+        }
+        card.addEventListener('animationend', handleAnimationEnd);
+        card.classList.add(status);
+      });
+    },
+
+    id() {
+      return card.dataset.card;
+    },
+
+    isFlipped() {
+      return card.classList.contains('show');
     }
-    card.addEventListener('transitionend', handleTransisionEnd);
-    card.classList.add('show');
-  });
-}
-
-function hideCard(card) {
-  card.classList.remove('show', 'not-matched', 'matched');
-}
-
-function markAsMatched(card) {
-  return new Promise(function(resolve) {
-    function handleAnimationEnd(event) {
-      card.removeEventListener('animationend', handleAnimationEnd);
-      resolve();
-    }
-    card.addEventListener('animationend', handleAnimationEnd);
-    card.classList.add('matched');
-  });
-}
-
-function signalNoMatch(card) {
-  return new Promise(function(resolve) {
-    function handleAnimationEnd(event) {
-      card.removeEventListener('animationend', handleAnimationEnd);
-      resolve();
-    }
-    card.addEventListener('animationend', handleAnimationEnd);
-    card.classList.add('not-matched');
-  });
-}
-
-function cardIsMatched(card) {
-  return card.classList.contains('matched');
-}
-
-function cardsMatch(card1, card2) {
-  return card1.dataset.card === card2.dataset.card;
-}
-
-function cardIsFlipped(card) {
-  return card.classList.contains('show');
+  }
 }
 
 function starsFromMoves(numberOfMoves) {
@@ -243,8 +235,8 @@ function newGame() {
   updateScorePanel(numberOfMoves);
 
   async function clickHandler(event) {
-    const currentCard = event.target.closest('.card');
-    if (!currentCard || cardIsFlipped(currentCard)) return;
+    const currentCard = getCard(event);
+    if (!currentCard || currentCard.isFlipped()) return;
 
     if (!timer.isRunning()) {
       timer.start();
@@ -256,29 +248,29 @@ function newGame() {
     if (numberOfCLicks % 2 === 0) {
       numberOfMoves++;
       const previousCard = openCards[numberOfCLicks-2];
-      if (cardsMatch(currentCard, previousCard)) {
+      if (currentCard.id() === previousCard.id()) {
         numberOfMatched++;
-        await showCard(currentCard);
+        await currentCard.show();
         await Promise.all([
-          markAsMatched(currentCard),
-          markAsMatched(previousCard)
+          currentCard.markAs('matched'),
+          previousCard.markAs('matched')
         ]);
         if (numberOfMatched === numberOfCards) {
           timer.stop();
           showWinMessage(numberOfMoves);
         }
       } else {
-        await showCard(currentCard);
+        await currentCard.show();
         await Promise.all([
-          signalNoMatch(currentCard),
-          signalNoMatch(previousCard)
+          currentCard.markAs('not-matched'),
+          previousCard.markAs('not-matched')
         ]);
-        hideCard(currentCard);
-        hideCard(previousCard);
+        currentCard.hide();
+        previousCard.hide();
       }
     } else {
       updateScorePanel(numberOfMoves);
-      await showCard(currentCard);
+      await currentCard.show();
     }
   };
 
