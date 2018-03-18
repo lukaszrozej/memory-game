@@ -352,6 +352,10 @@ body {
     height: 98vh;
     order: 1;
   }
+
+  .buttons {
+    width: 40%;
+  }
 }
 
 @media screen and (min-height: 700px) {
