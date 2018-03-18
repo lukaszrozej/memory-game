@@ -192,6 +192,10 @@ document.querySelector('.restart').addEventListener('click', async function() {
   $decks.focus();
 });
 
+document.querySelector('.help-btn').addEventListener('click', async function() {
+  showHelp();
+});
+
 $chooseADeck.addEventListener('click', async function() {
   $chooseADeck.classList.add('inactive');
   $resume.classList.remove('inactive');
