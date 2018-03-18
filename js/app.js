@@ -14,6 +14,10 @@ const $playAgain = document.querySelector('.play-again')
 const $resume = document.querySelector('.resume')
 const $chooseADeck = document.querySelector('.choose-a-deck')
 
+// It will be false after first appearance of help modal
+// It's used to control which button is displayed in help modal
+let firstHelp = true;
+
 //-----------------------------------------------------------------------------
 // Timer
 
