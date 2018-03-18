@@ -209,16 +209,6 @@ function dealCards(deckNumber, numberOfCards) {
     .join('\n');
 }
 
-function updateScorePanel(numberOfMoves) {
-  movesCounter.textContent = numberOfMoves;
-  const numberOfStars = starsFromMoves(numberOfMoves);
-  if (numberOfStars === 3) {
-    stars.forEach(star => star.classList.remove('lost'));
-    return;
-  }
-  stars[numberOfStars].classList.add('lost');
-}
-
 function newGame() {
 
   const numberOfCards = 8;
@@ -230,9 +220,19 @@ function newGame() {
 
   dealCards(document.querySelector('.decks').value, numberOfCards);
 
+  function updateScore() {
+    movesCounter.textContent = numberOfMoves;
+    const numberOfStars = starsFromMoves(numberOfMoves);
+    if (numberOfStars === 3) {
+      stars.forEach(star => star.classList.remove('lost'));
+      return;
+    }
+    stars[numberOfStars].classList.add('lost');
+  }
+
   timer.stop();
   timer.reset();
-  updateScorePanel(numberOfMoves);
+  updateScore();
 
   async function clickHandler(event) {
     const currentCard = getCard(event);
@@ -269,7 +269,7 @@ function newGame() {
         previousCard.hide();
       }
     } else {
-      updateScorePanel(numberOfMoves);
+      updateScore();
       await currentCard.show();
     }
   };
