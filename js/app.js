@@ -247,6 +247,7 @@ function newGame() {
 
     if (numberOfCLicks % 2 === 0) {
       numberOfMoves++;
+      updateScore();
       const previousCard = openCards[numberOfCLicks-2];
       if (currentCard.id() === previousCard.id()) {
         numberOfMatched++;
@@ -269,7 +270,6 @@ function newGame() {
         previousCard.hide();
       }
     } else {
-      updateScore();
       await currentCard.show();
     }
   };
