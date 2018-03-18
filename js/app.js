@@ -129,7 +129,7 @@ function getCard(event) {
 }
 
 function $starsFromMoves(numberOfMoves) {
-  const tresholds = [3, 6, 9];
+  const tresholds = [13, 17, 21];
   let i;
   for(i = 0; i < tresholds.length; i++) {
     if (numberOfMoves < tresholds[i]) break;
