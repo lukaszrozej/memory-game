@@ -10,7 +10,11 @@ const $finalTime = document.querySelector('.final-time');
 const $table = document.querySelector('.table');
 const $decks = document.querySelector('.decks');
 // Buttons:
+const $restartButton = document.querySelector('.restart')
+const $helpButton = document.querySelector('.help-btn')
+
 const $playAgain = document.querySelector('.play-again')
+const $play = document.querySelector('.play')
 const $resume = document.querySelector('.resume')
 const $chooseADeck = document.querySelector('.choose-a-deck')
 
@@ -140,100 +144,94 @@ function $starsFromMoves(numberOfMoves) {
 //-----------------------------------------------------------------------------
 // Modal
 
-function updateSampleCards() {
-  const deckNumber = $decks.value;
-  document.querySelector('.sample-cards').innerHTML = 
-    decks[deckNumber]
-      .cards
-      .slice(0,4)
-      .map(card => `
-        <li class="card sample show">
-          <div class="front">
-            <svg class="icon">
-              <use xlink:href="svg/sprites.svg#${card}"></use>
-            </svg>
-          </div>
-        </li>`)
-      .join('\n');
-}
-
 function initializeModal(decks) {
+
+  const focusElement = {
+    win: $playAgain,
+    choose: $decks,
+    help: $chooseADeck
+  };
+
+  let currentSection = 'help';
+
+  function updateSampleCards() {
+    const deckNumber = $decks.value;
+    document.querySelector('.sample-cards').innerHTML = 
+      decks[deckNumber]
+        .cards
+        .slice(0,4)
+        .map(card => `
+          <li class="card sample show">
+            <div class="front">
+              <svg class="icon">
+                <use xlink:href="svg/sprites.svg#${card}"></use>
+              </svg>
+            </div>
+          </li>`)
+        .join('\n');
+  }
+
   $decks.innerHTML =
     decks
       .map( (deck, index) => `<option value="${index}">${deck.name}</option>`)
       .join('/n');
   updateSampleCards();
-}
 
-$decks.addEventListener('change', function(event) {
-  updateSampleCards();
-})
-
-document.querySelector('.play-again').addEventListener('click', function() {
-  $modal.classList.add('choose');
-  $decks.focus();
-});
-
-document.querySelector('.play').addEventListener('click', function() {
-  if (game) {
-    game.stop();
+  function updateWinMessage(numberOfMoves) {
+    $finalMoves.textContent = numberOfMoves.toString();
+    $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
+    $finalTime.textContent = timer.value().toString();
   }
-  game = newGame();
-  $modal.classList.remove('show');
-});
 
-// The following functions use await sleep
-// to wait until browser toggles 'choose' class
-// and changes 'left' in css accordingly
-// so that transition is applied only to top,
-// not both to top and left
+  async function show(section) {
+    $modal.classList.remove(currentSection);
+    $modal.classList.add(section);
+    currentSection = section
+    if (!$modal.classList.contains('show')) {
+      await sleep(200);
+      $modal.classList.add('show');
+    }
+    focusElement[section].focus();
+  }
 
-document.querySelector('.restart').addEventListener('click', async function() {
-  $modal.classList.remove('help');
-  $modal.classList.add('choose');
-  await sleep(200);
-  $modal.classList.add('show');
-  $decks.focus();
-});
+  $restartButton.addEventListener('click', function() {
+    show('choose');
+  });
 
-document.querySelector('.help-btn').addEventListener('click', async function() {
-  timer.pause();
-  showHelp();
-});
+  $helpButton.addEventListener('click', function() {
+    timer.pause();
+    show('help');
+  });
 
-$chooseADeck.addEventListener('click', async function() {
-  $chooseADeck.classList.add('inactive');
-  $resume.classList.remove('inactive');
-  $buttonInHelpModal = $resume;
+  $playAgain.addEventListener('click', function() {
+    show('choose');
+  });
 
-  $modal.classList.remove('help');
-  $modal.classList.add('choose');
-  await sleep(200);
-  $modal.classList.add('show');
-  $decks.focus();
-});
+  $decks.addEventListener('change', function(event) {
+    updateSampleCards();
+  })
 
-$resume.addEventListener('click', function() {
-  $modal.classList.remove('show');
-  timer.resume();
-});
+  $play.addEventListener('click', function() {
+    if (game) {
+      game.stop();
+    }
+    game = newGame();
+    $modal.classList.remove('show');
+  });
 
-async function showWinMessage(numberOfMoves) {
-  $finalMoves.textContent = numberOfMoves.toString();
-  $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
-  $finalTime.textContent = timer.value().toString();
-  $modal.classList.remove('choose', 'help');
-  await sleep(200);
-  $modal.classList.add('show');
-  document.querySelector('.play-again').focus();
-}
+  $chooseADeck.addEventListener('click', function() {
+    $chooseADeck.classList.add('inactive');
+    $resume.classList.remove('inactive');
+    focusElement['help'] = $resume;
+    show('choose');
+  });
 
-async function showHelp() {
-  $modal.classList.remove('choose');
-  $modal.classList.add('help');
-  await sleep(200);
-  $modal.classList.add('show');
-  $buttonInHelpModal.focus();
+  $resume.addEventListener('click', function() {
+    $modal.classList.remove('show');
+    timer.resume();
+  });
+
+  return { show, updateWinMessage };
 }
 
 //-----------------------------------------------------------------------------
@@ -310,7 +308,8 @@ function newGame() {
         ]);
         if (numberOfMatched === numberOfCards) {
           timer.stop();
-          showWinMessage(numberOfMoves);
+          modal.updateWinMessage(numberOfMoves);
+          modal.show('win');
         }
       } else {
         await currentCard.show();
@@ -336,4 +335,4 @@ function newGame() {
   };
 }
 
-initializeModal(decks);
+const modal = initializeModal(decks);
