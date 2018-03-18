@@ -68,7 +68,7 @@ function showCard(card) {
 }
 
 function hideCard(card) {
-  card.classList.remove('show', 'matched');
+  card.classList.remove('show', 'not-matched', 'matched');
 }
 
 function markAsMatched(card) {
@@ -86,7 +86,6 @@ function signalNoMatch(card) {
   return new Promise(function(resolve) {
     function handleAnimationEnd(event) {
       card.removeEventListener('animationend', handleAnimationEnd);
-      card.classList.remove('not-matched');
       resolve();
     }
     card.addEventListener('animationend', handleAnimationEnd);
