@@ -267,11 +267,12 @@ function newGame() {
 
   $table.addEventListener('click', clickHandler);
 
-  function stop() {
-    $table.removeEventListener('click', clickHandler);
-  }
-
-  return { stop: stop };
+  return { 
+    stop() {
+      // To avoid memory leaks
+      $table.removeEventListener('click', clickHandler);
+    }
+  };
 }
 
 initializeModal(decks);
