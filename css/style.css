@@ -214,7 +214,7 @@ h1 {
   position: fixed;
   top: -100vh;
   left: 0;
-  width: 200vw;
+  width: 300vw;
   height: 100vh;
   z-index: 10;
   display: flex;
@@ -224,13 +224,14 @@ h1 {
   transition: top 0.3s;
 }
 
-.modal.choose {
+/*.modal.choose {
   transition: all 0.3s;
 }
-
+*/
 .win-message,
-.choose-deck {
-  width: 50%;
+.choose-deck,
+.help-info {
+  width: calc(100% / 3);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -245,10 +246,15 @@ h1 {
 
 .modal.show {
   top: 0;  
+  transition: all 0.3s;
 }
 
 .modal.choose {
   left: -100vw;
+}
+
+.modal.help {
+  left: -200vw;
 }
 
 .modal-item {
