@@ -270,7 +270,7 @@ function newGame() {
         previousCard.hide();
       }
     } else {
-      await currentCard.show();
+      currentCard.show();
     }
   };
 
