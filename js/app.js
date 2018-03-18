@@ -178,6 +178,14 @@ async function showWinMessage(numberOfMoves) {
   document.querySelector('.play-again').focus();
 }
 
+async function showHelp($button) {
+  $modal.classList.remove('choose');
+  $modal.classList.add('help');
+  await sleep(200);
+  $modal.classList.add('show');
+  $button.focus();
+}
+
 //-----------------------------------------------------------------------------
 // Game
 
