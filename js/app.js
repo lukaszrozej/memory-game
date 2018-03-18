@@ -162,6 +162,7 @@ async function showWinMessage(numberOfMoves) {
   winModal.classList.remove('choose');
   await sleep(200);
   winModal.classList.add('show');
+  document.querySelector('.play-again').focus();
 }
 
 function hideWinMessage() {
@@ -169,8 +170,9 @@ function hideWinMessage() {
 }
 
 document.querySelector('.play-again').addEventListener('click', function() {
-    winModal.classList.add('choose');
-  });
+  winModal.classList.add('choose');
+  document.querySelector('.decks').focus();
+});
 
 document.querySelector('.play').addEventListener('click', function() {
   game.stop();
