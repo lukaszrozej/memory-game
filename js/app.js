@@ -155,11 +155,14 @@ document.querySelector('.play').addEventListener('click', function() {
   $modal.classList.remove('show');
 });
 
+// The following two functions use await sleep
+// to wait until browser toggles 'choose' class
+// and changes 'left' in css accordingly
+// so that transition is applied only to top,
+// not both to top and left
+
 document.querySelector('.restart').addEventListener('click', async function() {
   $modal.classList.add('choose');
-  // Await to let the browser add 'choose' before 'show'
-  // so that only top transition is applied,
-  // not both top and left
   await sleep(200);
   $modal.classList.add('show');
   $decks.focus();
