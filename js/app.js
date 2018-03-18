@@ -1,3 +1,6 @@
+//-----------------------------------------------------------------------------
+// DOM elements
+
 const movesCounter = document.querySelector('.moves-counter');
 const stars = document.querySelectorAll('.star');
 const winModal = document.querySelector('.modal');
@@ -5,7 +8,7 @@ const finalMovesSpan = document.querySelector('.final-moves');
 const finalStarsSpan = document.querySelector('.final-stars');
 const finalTime = document.querySelector('.final-time');
 const table = document.querySelector('.table');
-
+const $decks = document.querySelector('.decks');
 //-----------------------------------------------------------------------------
 // Timer
 
@@ -119,13 +122,13 @@ function addDecksToChooseModal(decks) {
     option.textContent = deck.name;
     fragment.appendChild(option);
   });
-  document.querySelector('.decks').appendChild(fragment);
+  $decks.appendChild(fragment);
 }
 
 addDecksToChooseModal(decks);
 
 function updateSampleCards() {
-  const deckNumber = document.querySelector('.decks').value;
+  const deckNumber = $decks.value;
   document.querySelector('.sample-cards').innerHTML = 
     decks[deckNumber]
       .cards
@@ -143,7 +146,7 @@ function updateSampleCards() {
 
 updateSampleCards();
 
-document.querySelector('.decks').addEventListener('change', function(event) {
+$decks.addEventListener('change', function(event) {
   updateSampleCards();
 })
 
@@ -164,7 +167,7 @@ function hideWinMessage() {
 
 document.querySelector('.play-again').addEventListener('click', function() {
   winModal.classList.add('choose');
-  document.querySelector('.decks').focus();
+  $decks.focus();
 });
 
 document.querySelector('.play').addEventListener('click', function() {
@@ -180,7 +183,7 @@ document.querySelector('.restart').addEventListener('click', async function() {
   // not both top and left
   await sleep(200);
   winModal.classList.add('show');
-  document.querySelector('.decks').focus();
+  $decks.focus();
 });
 
 //-----------------------------------------------------------------------------
@@ -202,7 +205,7 @@ function newGame() {
     [order[i], order[j]] = [order[j], order[i]];
   }
   // Deal:
-  const deckNumber = document.querySelector('.decks').value;
+  const deckNumber = $decks.value;
   table.innerHTML = order
     .map(cardNumber => `
       <li class="card" data-card="${cardNumber}">
