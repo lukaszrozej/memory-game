@@ -1,6 +1,45 @@
 const decks =
 [
   {
+    "name": "animals",
+    "cards": [
+      "buffalo",
+      "elephant",
+      "giraffe",
+      "hippopotamus",
+      "lion",
+      "snake",
+      "tiger",
+      "turtle"
+    ]
+  },
+  {
+    "name": "flowers",
+    "cards": [
+      "aquatic-flower-1",
+      "daisy-with-stem",
+      "flower-and-stem-1",
+      "flower-and-stem",
+      "flower-with-colored-petals-and-stem",
+      "flower-with-stem-2",
+      "flower-with-stem",
+      "rose"
+    ]
+  },
+  {
+    "name": "instruments",
+    "cards": [
+      "bassoon",
+      "flute-2",
+      "french-horn",
+      "oboe",
+      "saxophone",
+      "trombone",
+      "trumpet",
+      "tuba"
+    ]
+  },
+  {
     "name": "robots",
     "cards": [
       "robot-1",
@@ -11,6 +50,19 @@ const decks =
       "robot-of-rounded-head",
       "robot-of-short-spherical-shape",
       "robot-with-lifeline"
+    ]
+  },
+  {
+    "name": "superheroes",
+    "cards": [
+      "batman",
+      "captain-america",
+      "dare-devil",
+      "iron-man",
+      "punisher",
+      "spiderman",
+      "thor",
+      "wolverine"
     ]
   },
   {
