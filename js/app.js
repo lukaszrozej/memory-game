@@ -1,14 +1,15 @@
 //-----------------------------------------------------------------------------
 // DOM elements
 
-const movesCounter = document.querySelector('.moves-counter');
-const stars = document.querySelectorAll('.star');
-const winModal = document.querySelector('.modal');
-const finalMovesSpan = document.querySelector('.final-moves');
-const finalStarsSpan = document.querySelector('.final-stars');
-const finalTime = document.querySelector('.final-time');
-const table = document.querySelector('.table');
+const $movesCounter = document.querySelector('.moves-counter');
+const $stars = document.querySelectorAll('.star');
+const $modal = document.querySelector('.modal');
+const $finalMoves = document.querySelector('.final-moves');
+const $finalStars = document.querySelector('.final-stars');
+const $finalTime = document.querySelector('.final-time');
+const $table = document.querySelector('.table');
 const $decks = document.querySelector('.decks');
+
 //-----------------------------------------------------------------------------
 // Timer
 
@@ -102,7 +103,7 @@ function getCard(event) {
   }
 }
 
-function starsFromMoves(numberOfMoves) {
+function $starsFromMoves(numberOfMoves) {
   const tresholds = [3, 6, 9];
   let i;
   for(i = 0; i < tresholds.length; i++) {
@@ -152,21 +153,21 @@ $decks.addEventListener('change', function(event) {
 
 
 async function showWinMessage(numberOfMoves) {
-  finalMovesSpan.textContent = numberOfMoves.toString();
-  finalStarsSpan.textContent = starsFromMoves(numberOfMoves).toString();
-  finalTime.textContent = timer.value().toString();
-  winModal.classList.remove('choose');
+  $finalMoves.textContent = numberOfMoves.toString();
+  $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
+  $finalTime.textContent = timer.value().toString();
+  $modal.classList.remove('choose');
   await sleep(200);
-  winModal.classList.add('show');
+  $modal.classList.add('show');
   document.querySelector('.play-again').focus();
 }
 
 function hideWinMessage() {
-  winModal.classList.remove('show');
+  $modal.classList.remove('show');
 }
 
 document.querySelector('.play-again').addEventListener('click', function() {
-  winModal.classList.add('choose');
+  $modal.classList.add('choose');
   $decks.focus();
 });
 
@@ -177,12 +178,12 @@ document.querySelector('.play').addEventListener('click', function() {
 });
 
 document.querySelector('.restart').addEventListener('click', async function() {
-  winModal.classList.add('choose');
+  $modal.classList.add('choose');
   // Await to let the browser add 'choose' before 'show'
   // so that only top transition is applied,
   // not both top and left
   await sleep(200);
-  winModal.classList.add('show');
+  $modal.classList.add('show');
   $decks.focus();
 });
 
@@ -206,7 +207,7 @@ function newGame() {
   }
   // Deal:
   const deckNumber = $decks.value;
-  table.innerHTML = order
+  $table.innerHTML = order
     .map(cardNumber => `
       <li class="card" data-card="${cardNumber}">
         <div class="back">
@@ -224,13 +225,13 @@ function newGame() {
 
 
   function updateScore() {
-    movesCounter.textContent = numberOfMoves;
-    const numberOfStars = starsFromMoves(numberOfMoves);
+    $movesCounter.textContent = numberOfMoves;
+    const numberOfStars = $starsFromMoves(numberOfMoves);
     if (numberOfStars === 3) {
-      stars.forEach(star => star.classList.remove('lost'));
+      $stars.forEach(star => star.classList.remove('lost'));
       return;
     }
-    stars[numberOfStars].classList.add('lost');
+    $stars[numberOfStars].classList.add('lost');
   }
 
   timer.reset();
@@ -276,10 +277,10 @@ function newGame() {
     }
   };
 
-  table.addEventListener('click', clickHandler);
+  $table.addEventListener('click', clickHandler);
 
   function stop() {
-    table.removeEventListener('click', clickHandler);
+    $table.removeEventListener('click', clickHandler);
   }
 
   return { stop: stop };
