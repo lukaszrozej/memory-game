@@ -65,6 +65,8 @@ function initializeTimer(element) {
     reset() {
       clearInterval(intervalId);
       running = false;
+      paused = false;
+      totalPausedTime = 0;
       element.textContent = '0';
     },
 
