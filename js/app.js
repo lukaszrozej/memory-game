@@ -25,9 +25,13 @@ function initializeTimer(element) {
   let elapsedTime = 0;
   let intervalId;
   let running = false;
+  let paused = false;
+  let pauseStart;
+  let totalPausedTime = 0;
 
   function display() {
-      element.textContent = Math.round((Date.now() - startTime) / 1000).toString();
+    if (paused) return;
+    element.textContent = Math.round((Date.now() - startTime - totalPausedTime) / 1000).toString();
   }
 
   return {
@@ -41,10 +45,20 @@ function initializeTimer(element) {
       running = true;
     },
 
+    pause() {
+      paused = true;
+      pauseStart = Date.now();
+    },
+
+    resume() {
+      totalPausedTime += Date.now() - pauseStart;
+      paused = false;
+    },
+
     stop() {
       clearInterval(intervalId);
       running = false;
-      elapsedTime = Math.round((Date.now() - startTime) / 1000);
+      elapsedTime = Math.round((Date.now() - startTime - totalPausedTime) / 1000);
       element.textContent = elapsedTime.toString();
     },
 
