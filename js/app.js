@@ -38,6 +38,8 @@ function initializeTimer(element) {
     },
 
     reset() {
+      clearInterval(intervalId);
+      running = false;
       element.textContent = '0';
     },
 
@@ -228,7 +230,6 @@ function newGame() {
     stars[numberOfStars].classList.add('lost');
   }
 
-  timer.stop();
   timer.reset();
   updateScore();
 
