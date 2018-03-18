@@ -184,7 +184,15 @@ document.querySelector('.restart').addEventListener('click', async function() {
 //-----------------------------------------------------------------------------
 // Game
 
-function dealCards(deckNumber, numberOfCards) {
+function newGame() {
+
+  const numberOfCards = 8;
+
+  const openCards = [];
+  let numberOfCLicks = 0;
+  let numberOfMoves = 0;
+  let numberOfMatched = 0;
+
   // Shuffle:
   const order = [...Array(numberOfCards).keys(), ...Array(numberOfCards).keys()];
   for(let i = order.length-1; i > 0; i--) {
@@ -192,6 +200,7 @@ function dealCards(deckNumber, numberOfCards) {
     [order[i], order[j]] = [order[j], order[i]];
   }
   // Deal:
+  const deckNumber = document.querySelector('.decks').value;
   table.innerHTML = order
     .map(cardNumber => `
       <li class="card" data-card="${cardNumber}">
@@ -207,18 +216,7 @@ function dealCards(deckNumber, numberOfCards) {
         </div>
       </li>`)
     .join('\n');
-}
 
-function newGame() {
-
-  const numberOfCards = 8;
-
-  const openCards = [];
-  let numberOfCLicks = 0;
-  let numberOfMoves = 0;
-  let numberOfMatched = 0;
-
-  dealCards(document.querySelector('.decks').value, numberOfCards);
 
   function updateScore() {
     movesCounter.textContent = numberOfMoves;
