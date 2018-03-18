@@ -288,6 +288,7 @@ button {
   border-radius: 5px;
   margin: 0.5em auto;
   font-size: 1rem;
+  min-width: 5.5em;
 }
 
 .inactive {
