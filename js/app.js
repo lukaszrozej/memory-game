@@ -197,6 +197,7 @@ document.querySelector('.restart').addEventListener('click', async function() {
 });
 
 document.querySelector('.help-btn').addEventListener('click', async function() {
+  timer.pause();
   showHelp();
 });
 
@@ -228,7 +229,6 @@ async function showWinMessage(numberOfMoves) {
 }
 
 async function showHelp() {
-  timer.pause();
   $modal.classList.remove('choose');
   $modal.classList.add('help');
   await sleep(200);
