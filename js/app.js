@@ -144,16 +144,6 @@ $decks.addEventListener('change', function(event) {
   updateSampleCards();
 })
 
-async function showWinMessage(numberOfMoves) {
-  $finalMoves.textContent = numberOfMoves.toString();
-  $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
-  $finalTime.textContent = timer.value().toString();
-  $modal.classList.remove('choose');
-  await sleep(200);
-  $modal.classList.add('show');
-  document.querySelector('.play-again').focus();
-}
-
 document.querySelector('.play-again').addEventListener('click', function() {
   $modal.classList.add('choose');
   $decks.focus();
@@ -174,6 +164,16 @@ document.querySelector('.restart').addEventListener('click', async function() {
   $modal.classList.add('show');
   $decks.focus();
 });
+
+async function showWinMessage(numberOfMoves) {
+  $finalMoves.textContent = numberOfMoves.toString();
+  $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
+  $finalTime.textContent = timer.value().toString();
+  $modal.classList.remove('choose');
+  await sleep(200);
+  $modal.classList.add('show');
+  document.querySelector('.play-again').focus();
+}
 
 //-----------------------------------------------------------------------------
 // Game
