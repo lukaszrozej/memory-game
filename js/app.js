@@ -17,6 +17,8 @@ const $chooseADeck = document.querySelector('.choose-a-deck')
 // It's used to control which button is displayed in help modal
 let $buttonInHelpModal = $chooseADeck;
 
+let game;
+
 //-----------------------------------------------------------------------------
 // Timer
 
@@ -173,7 +175,9 @@ document.querySelector('.play-again').addEventListener('click', function() {
 });
 
 document.querySelector('.play').addEventListener('click', function() {
-  game.stop();
+  if (game) {
+    game.stop();
+  }
   game = newGame();
   $modal.classList.remove('show');
 });
@@ -333,4 +337,3 @@ function newGame() {
 }
 
 initializeModal(decks);
-let game = newGame();
