@@ -203,6 +203,7 @@ $chooseADeck.addEventListener('click', async function() {
 
 $resume.addEventListener('click', function() {
   $modal.classList.remove('show');
+  timer.resume();
 });
 
 async function showWinMessage(numberOfMoves) {
@@ -216,6 +217,7 @@ async function showWinMessage(numberOfMoves) {
 }
 
 async function showHelp() {
+  timer.pause();
   $modal.classList.remove('choose');
   $modal.classList.add('help');
   await sleep(200);
