@@ -185,6 +185,7 @@ document.querySelector('.play').addEventListener('click', function() {
 // not both to top and left
 
 document.querySelector('.restart').addEventListener('click', async function() {
+  $modal.classList.remove('help');
   $modal.classList.add('choose');
   await sleep(200);
   $modal.classList.add('show');
@@ -212,7 +213,7 @@ async function showWinMessage(numberOfMoves) {
   $finalMoves.textContent = numberOfMoves.toString();
   $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
   $finalTime.textContent = timer.value().toString();
-  $modal.classList.remove('choose');
+  $modal.classList.remove('choose', 'help');
   await sleep(200);
   $modal.classList.add('show');
   document.querySelector('.play-again').focus();
