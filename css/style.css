@@ -279,6 +279,7 @@ h1 {
   align-items: center;
   width: 90%;
   margin: 0 auto;
+  max-width: 20em;
 }
 
 button {
