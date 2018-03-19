@@ -314,8 +314,8 @@ function startApp(decks) {
           ]);
           if (numberOfMatched === numberOfCards) {
             timer.stop();
-            modal.updateWinMessage(numberOfMoves);
-            modal.showModal('win');
+            updateWinMessage(numberOfMoves);
+            showModal('win');
           }
         } else {
           await currentCard.show();
@@ -340,8 +340,6 @@ function startApp(decks) {
       }
     };
   }
-
-  return { showModal, updateWinMessage };
 }
 
-const modal = startApp(decks);
+startApp(decks);
