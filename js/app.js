@@ -193,7 +193,7 @@ function startApp(decks) {
   // and change modal's left position accordingly
   // so that when show class is added
   // transition is applied only to top position
-  async function show(section) {
+  async function showModal(section) {
     $modal.classList.remove(currentSection);
     $modal.classList.add(section);
     currentSection = section
@@ -205,12 +205,12 @@ function startApp(decks) {
   }
 
   $restartBtn.addEventListener('click', function() {
-    show('choose');
+    showModal('choose');
   });
 
   $helpBtn.addEventListener('click', function() {
     timer.pause();
-    show('help');
+    showModal('help');
   });
 
   $decks.addEventListener('change', function(event) {
@@ -224,7 +224,7 @@ function startApp(decks) {
         $resumeBtn.classList.remove('inactive');
         focusElement['help'] = $resumeBtn;
       case $playAgainBtn:
-        show('choose');
+        showModal('choose');
         break;
       case $playBtn:
         if (game) {
@@ -315,7 +315,7 @@ function startApp(decks) {
           if (numberOfMatched === numberOfCards) {
             timer.stop();
             modal.updateWinMessage(numberOfMoves);
-            modal.show('win');
+            modal.showModal('win');
           }
         } else {
           await currentCard.show();
@@ -341,7 +341,7 @@ function startApp(decks) {
     };
   }
 
-  return { show, updateWinMessage };
+  return { showModal, updateWinMessage };
 }
 
 const modal = startApp(decks);
