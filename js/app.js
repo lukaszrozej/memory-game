@@ -170,42 +170,6 @@ function startApp(decks) {
     }
   }
 
-
-  $restartBtn.addEventListener('click', function() {
-    showModal('choose');
-  });
-
-  $helpBtn.addEventListener('click', function() {
-    timer.pause();
-    showModal('help');
-  });
-
-  $decks.addEventListener('change', function(event) {
-    updateSampleCards();
-  });
-
-  $modal.addEventListener('click', function(event) {
-    switch(event.target) {
-      case $chooseADeckBtn:
-        $chooseADeckBtn.classList.add('inactive');
-        $resumeBtn.classList.remove('inactive');
-      case $playAgainBtn:
-        showModal('choose');
-        break;
-      case $playBtn:
-        if (game) {
-          game.stop();
-        }
-        game = newGame();
-        $modal.classList.remove('show');
-        break;
-      case $resumeBtn:
-        $modal.classList.remove('show');
-        timer.resume();
-    }
-  });
-
-
   //-----------------------------------------------------------------------------
   // Game
 
@@ -306,6 +270,41 @@ function startApp(decks) {
       }
     };
   }
+
+  $restartBtn.addEventListener('click', function() {
+    showModal('choose');
+  });
+
+  $helpBtn.addEventListener('click', function() {
+    timer.pause();
+    showModal('help');
+  });
+
+  $decks.addEventListener('change', function(event) {
+    updateSampleCards();
+  });
+
+  $modal.addEventListener('click', function(event) {
+    switch(event.target) {
+      case $chooseADeckBtn:
+        $chooseADeckBtn.classList.add('inactive');
+        $resumeBtn.classList.remove('inactive');
+      case $playAgainBtn:
+        showModal('choose');
+        break;
+      case $playBtn:
+        if (game) {
+          game.stop();
+        }
+        game = newGame();
+        $modal.classList.remove('show');
+        break;
+      case $resumeBtn:
+        $modal.classList.remove('show');
+        timer.resume();
+    }
+  });
+
 }
 
 startApp(decks);
