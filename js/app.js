@@ -179,7 +179,7 @@ function startApp(decks) {
   //  with a method for removing the event listener
   function newGame() {
 
-    const numberOfCards = 8;
+    const NUMBER_OF_CARDS = 8;
 
     // Game state variables
     let clickedCards = [];
@@ -187,7 +187,7 @@ function startApp(decks) {
     let numberOfMatched = 0;
 
     // Shuffle:
-    const order = [...Array(numberOfCards).keys(), ...Array(numberOfCards).keys()];
+    const order = [...Array(NUMBER_OF_CARDS).keys(), ...Array(NUMBER_OF_CARDS).keys()];
     for(let i = order.length-1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
       [order[i], order[j]] = [order[j], order[i]];
@@ -252,7 +252,7 @@ function startApp(decks) {
         clickedCards = [];
         if (currentCard.id() === previousCard.id()) {
           numberOfMatched++;
-          if (numberOfMatched === numberOfCards) {
+          if (numberOfMatched === NUMBER_OF_CARDS) {
             timer.stop();
             allCardsMatched = true;
           }
