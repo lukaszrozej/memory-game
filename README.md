@@ -15,3 +15,19 @@ You start with 3 stars and lose one when you make moves number 13, 17 and 21.
 
 All SVG icons I used were made by [Freepik](http://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/).
 Licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+
+## How to add decks
+
+After you clone the repository, copy a directory containing 8 svg files into sprites/decks/.
+
+Run:
+
+```sh
+npm init
+```
+
+and then:
+
+```sh
+gulp
+```
