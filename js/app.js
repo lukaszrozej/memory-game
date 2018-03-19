@@ -58,52 +58,7 @@ function startApp(decks) {
   }
 
   //-----------------------------------------------------------------------------
-  // Cards
-
-  function getCard(event) {
-    const card = event.target.closest('.card');
-    if (!card) return undefined;
-
-    return {    
-      show() {
-        return new Promise(function(resolve) {
-          function handleTransisionEnd(event) {
-            card.removeEventListener('transitionend', handleTransisionEnd);
-            resolve();
-          }
-          card.addEventListener('transitionend', handleTransisionEnd);
-          card.classList.add('show');
-        });
-      },
-
-      hide() {
-        card.classList.remove('show', 'not-matched', 'matched');
-      },
-
-      markAs(status) {
-        return new Promise(function(resolve) {
-          function handleAnimationEnd(event) {
-            card.removeEventListener('animationend', handleAnimationEnd);
-            resolve();
-          }
-          card.addEventListener('animationend', handleAnimationEnd);
-          card.classList.add(status);
-        });
-      },
-
-      id() {
-        return card.dataset.card;
-      },
-
-      isFlipped() {
-        return card.classList.contains('show');
-      }
-    }
-  }
-
-  //-----------------------------------------------------------------------------
-  // Modal
-
+  // Modal functions
 
   function updateSampleCards() {
     const deckNumber = $decks.value;
@@ -155,6 +110,52 @@ function startApp(decks) {
     }
     focusElement[section].focus();
   }
+
+
+  //-----------------------------------------------------------------------------
+  // Cards
+
+  function getCard(event) {
+    const card = event.target.closest('.card');
+    if (!card) return undefined;
+
+    return {    
+      show() {
+        return new Promise(function(resolve) {
+          function handleTransisionEnd(event) {
+            card.removeEventListener('transitionend', handleTransisionEnd);
+            resolve();
+          }
+          card.addEventListener('transitionend', handleTransisionEnd);
+          card.classList.add('show');
+        });
+      },
+
+      hide() {
+        card.classList.remove('show', 'not-matched', 'matched');
+      },
+
+      markAs(status) {
+        return new Promise(function(resolve) {
+          function handleAnimationEnd(event) {
+            card.removeEventListener('animationend', handleAnimationEnd);
+            resolve();
+          }
+          card.addEventListener('animationend', handleAnimationEnd);
+          card.classList.add(status);
+        });
+      },
+
+      id() {
+        return card.dataset.card;
+      },
+
+      isFlipped() {
+        return card.classList.contains('show');
+      }
+    }
+  }
+
 
   $restartBtn.addEventListener('click', function() {
     showModal('choose');
