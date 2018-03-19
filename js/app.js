@@ -3,9 +3,6 @@
 
 const $movesCounter = document.querySelector('.moves-counter');
 const $stars = document.querySelectorAll('.star');
-const $finalMoves = document.querySelector('.final-moves');
-const $finalStars = document.querySelector('.final-stars');
-const $finalTime = document.querySelector('.final-time');
 const $table = document.querySelector('.table');
 const $decks = document.querySelector('.decks');
 // Buttons:
@@ -138,6 +135,10 @@ function starsFromMoves(numberOfMoves) {
 function initializeModal(decks) {
 
   const $modal = document.querySelector('.modal');
+
+  const $finalMoves = document.querySelector('.final-moves');
+  const $finalStars = document.querySelector('.final-stars');
+  const $finalTime = document.querySelector('.final-time');
 
   const $playAgainBtn = document.querySelector('.play-again-btn')
   const $playBtn = document.querySelector('.play-btn')
