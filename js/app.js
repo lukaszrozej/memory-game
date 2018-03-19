@@ -181,6 +181,7 @@ function startApp(decks) {
 
     const numberOfCards = 8;
 
+    // Game state variables
     let clickedCards = [];
     let numberOfMoves = 0;
     let numberOfMatched = 0;
