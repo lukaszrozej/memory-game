@@ -65,7 +65,6 @@ function startApp(decks) {
     document.querySelector('.sample-cards').innerHTML = 
       decks[deckNumber]
         .cards
-        // .slice(0,4)
         .map(card => `
           <li class="card sample show">
             <div class="front">
