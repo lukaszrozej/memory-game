@@ -181,7 +181,7 @@ function startApp(decks) {
 
     const numberOfCards = 8;
 
-    const clickedCards = [];
+    let clickedCards = [];
     let numberOfCLicks = 0;
     let numberOfMoves = 0;
     let numberOfMatched = 0;
@@ -238,7 +238,8 @@ function startApp(decks) {
       if (numberOfCLicks % 2 === 0) {
         numberOfMoves++;
         updateScore();
-        const previousCard = clickedCards[numberOfCLicks-2];
+        const previousCard = clickedCards[0];
+        clickedCards = [];
         if (currentCard.id() === previousCard.id()) {
           numberOfMatched++;
           await currentCard.show();
