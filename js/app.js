@@ -38,6 +38,8 @@ function startApp(decks) {
   // Currently displayed modal section
   let currentSection = 'help';
 
+  const timer = initializeTimer(document.querySelector('.time'));
+
   //-----------------------------------------------------------------------------
   // Helper functions
 
@@ -54,11 +56,6 @@ function startApp(decks) {
     }
     return 3 - i;
   }
-
-  //-----------------------------------------------------------------------------
-  // Timer
-
-  const timer = initializeTimer(document.querySelector('.time'));
 
   //-----------------------------------------------------------------------------
   // Cards
