@@ -18,15 +18,14 @@ Licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
 ## How to add decks
 
-After you clone the repository, copy a directory containing 8 svg files into sprites/decks/.
-
-Run:
+First clone the repository and install dependencies by running:
 
 ```sh
-npm init
+npm install
 ```
 
-and then:
+Then copy a directory containing 8 svg files into sprites/decks/.
+and run:
 
 ```sh
 gulp
