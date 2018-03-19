@@ -154,7 +154,7 @@ function startApp(decks) {
   const focusElement = {
     win: $playAgainBtn,
     choose: $decks,
-    help: $chooseADeckBtn
+    help: $resumeBtn
   };
 
   let currentSection = 'help';
@@ -222,7 +222,6 @@ function startApp(decks) {
       case $chooseADeckBtn:
         $chooseADeckBtn.classList.add('inactive');
         $resumeBtn.classList.remove('inactive');
-        focusElement['help'] = $resumeBtn;
       case $playAgainBtn:
         showModal('choose');
         break;
