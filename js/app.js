@@ -60,6 +60,8 @@ function startApp(decks) {
   //-----------------------------------------------------------------------------
   // Modal
 
+  // Updates pictures of cards displayed in choose section of modal
+  // to cards taken from  currently chosen deck
   function updateSampleCards() {
     const deckNumber = $decks.value;
     document.querySelector('.sample-cards').innerHTML = 
@@ -76,17 +78,19 @@ function startApp(decks) {
         .join('\n');
   }
 
+  // Updates win message displayed in modal with
+  // - time taken from timer
+  // - numberOfMoves
+  // - star rating based on numberOfMoves
   function updateWinMessage(numberOfMoves) {
     $finalMoves.textContent = numberOfMoves.toString();
     $finalStars.textContent = starsFromMoves(numberOfMoves).toString();
     $finalTime.textContent = timer.value().toString();
   }
 
-  // The show function uses await sleep
-  // to let the browser change class from currentSection to section
-  // and change modal's left position accordingly
-  // so that when show class is added
-  // transition is applied only to top position
+  // Shows the section of modal given by argument
+  // section can be: 'win', 'choose' or 'help'
+  //
   async function showModal(section) {
     // What should receive focus in each section
     const focusElement = {
@@ -98,12 +102,19 @@ function startApp(decks) {
     $modal.classList.add(section);
     currentSection = section
     if (!$modal.classList.contains('show')) {
+      // await sleep is used
+      // to wait until the browser changes class from currentSection to section
+      // and changes modal's left position accordingly
+      // so that when show class is added
+      // transition is applied only to top position
       await sleep(200);
       $modal.classList.add('show');
     }
     focusElement[section].focus();
   }
 
+  // Insert deck names into the $decks select element
+  // and update card pictures accrdingly
   $decks.innerHTML =
     decks
       .map( (deck, index) => `<option value="${index}">${deck.name}</option>`)
