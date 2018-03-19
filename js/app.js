@@ -2,14 +2,33 @@ function startApp(decks) {
 
   //-----------------------------------------------------------------------------
   // DOM elements
-  const $decks = document.querySelector('.decks');
 
+  // Main screen buttons
+  const $restartBtn = document.querySelector('.restart-btn')
+  const $helpBtn = document.querySelector('.help-btn')
+
+  // Score panel
   const $movesCounter = document.querySelector('.moves-counter');
   const $stars = document.querySelectorAll('.star');
   const $table = document.querySelector('.table');
-  // Buttons:
-  const $restartBtn = document.querySelector('.restart-btn')
-  const $helpBtn = document.querySelector('.help-btn')
+
+  // Modal
+  const $modal = document.querySelector('.modal');
+
+  // Win message elements
+  const $finalMoves = document.querySelector('.final-moves');
+  const $finalStars = document.querySelector('.final-stars');
+  const $finalTime = document.querySelector('.final-time');
+
+  // Decks select
+  const $decks = document.querySelector('.decks');
+
+  // Button in modal
+  const $playAgainBtn = document.querySelector('.play-again-btn')
+  const $playBtn = document.querySelector('.play-btn')
+  const $resumeBtn = document.querySelector('.resume-btn')
+  const $chooseADeckBtn = document.querySelector('.choose-a-deck-btn')
+
 
   let game;
 
@@ -81,18 +100,6 @@ function startApp(decks) {
 
   //-----------------------------------------------------------------------------
   // Modal
-
-
-  const $modal = document.querySelector('.modal');
-
-  const $finalMoves = document.querySelector('.final-moves');
-  const $finalStars = document.querySelector('.final-stars');
-  const $finalTime = document.querySelector('.final-time');
-
-  const $playAgainBtn = document.querySelector('.play-again-btn')
-  const $playBtn = document.querySelector('.play-btn')
-  const $resumeBtn = document.querySelector('.resume-btn')
-  const $chooseADeckBtn = document.querySelector('.choose-a-deck-btn')
 
   let currentSection = 'help';
 
