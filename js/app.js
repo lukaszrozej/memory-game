@@ -10,8 +10,8 @@ const $finalTime = document.querySelector('.final-time');
 const $table = document.querySelector('.table');
 const $decks = document.querySelector('.decks');
 // Buttons:
-const $restartButton = document.querySelector('.restart')
-const $helpButton = document.querySelector('.help-btn')
+const $restartBtn = document.querySelector('.restart-btn')
+const $helpBtn = document.querySelector('.help-btn')
 
 let game;
 
@@ -138,16 +138,16 @@ function $starsFromMoves(numberOfMoves) {
 
 function initializeModal(decks) {
 
-  const $playAgain = document.querySelector('.play-again')
-  const $play = document.querySelector('.play')
-  const $resume = document.querySelector('.resume')
-  const $chooseADeck = document.querySelector('.choose-a-deck')
+  const $playAgainBtn = document.querySelector('.play-again-btn')
+  const $playBtn = document.querySelector('.play-btn')
+  const $resumeBtn = document.querySelector('.resume-btn')
+  const $chooseADeckBtn = document.querySelector('.choose-a-deck-btn')
 
   // What should receive focus in each section
   const focusElement = {
-    win: $playAgain,
+    win: $playAgainBtn,
     choose: $decks,
-    help: $chooseADeck
+    help: $chooseADeckBtn
   };
 
   let currentSection = 'help';
@@ -192,16 +192,16 @@ function initializeModal(decks) {
     focusElement[section].focus();
   }
 
-  $restartButton.addEventListener('click', function() {
+  $restartBtn.addEventListener('click', function() {
     show('choose');
   });
 
-  $helpButton.addEventListener('click', function() {
+  $helpBtn.addEventListener('click', function() {
     timer.pause();
     show('help');
   });
 
-  $playAgain.addEventListener('click', function() {
+  $playAgainBtn.addEventListener('click', function() {
     show('choose');
   });
 
@@ -209,7 +209,7 @@ function initializeModal(decks) {
     updateSampleCards();
   })
 
-  $play.addEventListener('click', function() {
+  $playBtn.addEventListener('click', function() {
     if (game) {
       game.stop();
     }
@@ -217,14 +217,14 @@ function initializeModal(decks) {
     $modal.classList.remove('show');
   });
 
-  $chooseADeck.addEventListener('click', function() {
-    $chooseADeck.classList.add('inactive');
-    $resume.classList.remove('inactive');
-    focusElement['help'] = $resume;
+  $chooseADeckBtn.addEventListener('click', function() {
+    $chooseADeckBtn.classList.add('inactive');
+    $resumeBtn.classList.remove('inactive');
+    focusElement['help'] = $resumeBtn;
     show('choose');
   });
 
-  $resume.addEventListener('click', function() {
+  $resumeBtn.addEventListener('click', function() {
     $modal.classList.remove('show');
     timer.resume();
   });
