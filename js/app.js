@@ -122,8 +122,13 @@ function startApp(decks) {
   updateSampleCards();
 
   //-----------------------------------------------------------------------------
-  // Cards
+  // Card
 
+  // Returns an object representing the card that is target of the event
+  // or undefined if target is not a card
+  // The object has methods
+  // to control the cards display and
+  // get info on the card
   function getCard(event) {
     const card = event.target.closest('.card');
     if (!card) return undefined;
