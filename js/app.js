@@ -29,8 +29,13 @@ function startApp(decks) {
   const $resumeBtn = document.querySelector('.resume-btn')
   const $chooseADeckBtn = document.querySelector('.choose-a-deck-btn')
 
+  //-----------------------------------------------------------------------------
+  // App state variables
 
+  // Represents currently played game
   let game;
+
+  // Currently displayed modal section
   let currentSection = 'help';
 
   //-----------------------------------------------------------------------------
