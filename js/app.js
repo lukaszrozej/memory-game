@@ -231,6 +231,8 @@ function startApp(decks) {
         timer.start();
       }
 
+      let allCardsMatched = false;
+
       clickedCards.push(currentCard);
 
       if (clickedCards.length == 2) {
@@ -240,13 +242,16 @@ function startApp(decks) {
         clickedCards = [];
         if (currentCard.id() === previousCard.id()) {
           numberOfMatched++;
+          if (numberOfMatched === numberOfCards) {
+            timer.stop();
+            allCardsMatched = true;
+          }
           await currentCard.show();
           await Promise.all([
             currentCard.markAs('matched'),
             previousCard.markAs('matched')
           ]);
-          if (numberOfMatched === numberOfCards) {
-            timer.stop();
+          if (allCardsMatched) {
             updateWinMessage(numberOfMoves);
             showModal('win');
           }
