@@ -18,9 +18,6 @@ const $play = document.querySelector('.play')
 const $resume = document.querySelector('.resume')
 const $chooseADeck = document.querySelector('.choose-a-deck')
 
-// It's used to control which button is displayed in help modal
-let $buttonInHelpModal = $chooseADeck;
-
 let game;
 
 //-----------------------------------------------------------------------------
