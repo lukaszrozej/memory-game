@@ -202,32 +202,30 @@ function initializeModal(decks) {
     show('help');
   });
 
-  $playAgainBtn.addEventListener('click', function() {
-    show('choose');
-  });
-
   $decks.addEventListener('change', function(event) {
     updateSampleCards();
-  })
+  });
 
-  $playBtn.addEventListener('click', function() {
-    if (game) {
-      game.stop();
+  $modal.addEventListener('click', function(event) {
+    switch(event.target) {
+      case $chooseADeckBtn:
+        $chooseADeckBtn.classList.add('inactive');
+        $resumeBtn.classList.remove('inactive');
+        focusElement['help'] = $resumeBtn;
+      case $playAgainBtn:
+        show('choose');
+        break;
+      case $playBtn:
+        if (game) {
+          game.stop();
+        }
+        game = newGame();
+        $modal.classList.remove('show');
+        break;
+      case $resumeBtn:
+        $modal.classList.remove('show');
+        timer.resume();
     }
-    game = newGame();
-    $modal.classList.remove('show');
-  });
-
-  $chooseADeckBtn.addEventListener('click', function() {
-    $chooseADeckBtn.classList.add('inactive');
-    $resumeBtn.classList.remove('inactive');
-    focusElement['help'] = $resumeBtn;
-    show('choose');
-  });
-
-  $resumeBtn.addEventListener('click', function() {
-    $modal.classList.remove('show');
-    timer.resume();
   });
 
   return { show, updateWinMessage };
