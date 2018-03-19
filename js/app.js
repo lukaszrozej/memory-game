@@ -318,9 +318,6 @@ function startApp(decks) {
           game.stop();
         }
         game = newGame();
-        $modal.classList.remove('show');
-        $restartBtn.focus();
-        break;
       case $resumeBtn:
         $modal.classList.remove('show');
         $restartBtn.focus();
