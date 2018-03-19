@@ -58,7 +58,7 @@ function startApp(decks) {
   }
 
   //-----------------------------------------------------------------------------
-  // Modal functions
+  // Modal
 
   function updateSampleCards() {
     const deckNumber = $decks.value;
@@ -76,12 +76,6 @@ function startApp(decks) {
           </li>`)
         .join('\n');
   }
-
-  $decks.innerHTML =
-    decks
-      .map( (deck, index) => `<option value="${index}">${deck.name}</option>`)
-      .join('/n');
-  updateSampleCards();
 
   function updateWinMessage(numberOfMoves) {
     $finalMoves.textContent = numberOfMoves.toString();
@@ -111,6 +105,11 @@ function startApp(decks) {
     focusElement[section].focus();
   }
 
+  $decks.innerHTML =
+    decks
+      .map( (deck, index) => `<option value="${index}">${deck.name}</option>`)
+      .join('/n');
+  updateSampleCards();
 
   //-----------------------------------------------------------------------------
   // Cards
