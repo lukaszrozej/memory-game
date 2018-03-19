@@ -71,6 +71,7 @@ function initializeTimer(element) {
 
 const timer = initializeTimer(document.querySelector('.time'));
 
+// Taken from https://stackoverflow.com/a/39914235/2897430
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
