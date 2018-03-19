@@ -29,6 +29,7 @@ function initializeTimer(element) {
     },
 
     resume() {
+      if (!running || !paused) return;
       totalPausedTime += Date.now() - pauseStart;
       paused = false;
     },
