@@ -143,6 +143,7 @@ function initializeModal(decks) {
   const $resume = document.querySelector('.resume')
   const $chooseADeck = document.querySelector('.choose-a-deck')
 
+  // What should receive focus in each section
   const focusElement = {
     win: $playAgain,
     choose: $decks,
