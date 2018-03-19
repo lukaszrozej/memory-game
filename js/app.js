@@ -123,7 +123,7 @@ function getCard(event) {
   }
 }
 
-function $starsFromMoves(numberOfMoves) {
+function starsFromMoves(numberOfMoves) {
   const tresholds = [13, 17, 21];
   let i;
   for(i = 0; i < tresholds.length; i++) {
@@ -178,7 +178,7 @@ function initializeModal(decks) {
 
   function updateWinMessage(numberOfMoves) {
     $finalMoves.textContent = numberOfMoves.toString();
-    $finalStars.textContent = $starsFromMoves(numberOfMoves).toString();
+    $finalStars.textContent = starsFromMoves(numberOfMoves).toString();
     $finalTime.textContent = timer.value().toString();
   }
 
@@ -275,7 +275,7 @@ function newGame() {
 
   function updateScore() {
     $movesCounter.textContent = numberOfMoves;
-    const numberOfStars = $starsFromMoves(numberOfMoves);
+    const numberOfStars = starsFromMoves(numberOfMoves);
     if (numberOfStars === 3) {
       $stars.forEach(star => star.classList.remove('lost'));
       return;
