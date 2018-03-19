@@ -13,11 +13,6 @@ const $decks = document.querySelector('.decks');
 const $restartButton = document.querySelector('.restart')
 const $helpButton = document.querySelector('.help-btn')
 
-const $playAgain = document.querySelector('.play-again')
-const $play = document.querySelector('.play')
-const $resume = document.querySelector('.resume')
-const $chooseADeck = document.querySelector('.choose-a-deck')
-
 let game;
 
 //-----------------------------------------------------------------------------
@@ -142,6 +137,11 @@ function $starsFromMoves(numberOfMoves) {
 // Modal
 
 function initializeModal(decks) {
+
+  const $playAgain = document.querySelector('.play-again')
+  const $play = document.querySelector('.play')
+  const $resume = document.querySelector('.resume')
+  const $chooseADeck = document.querySelector('.choose-a-deck')
 
   const focusElement = {
     win: $playAgain,
