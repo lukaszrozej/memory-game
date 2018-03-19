@@ -289,6 +289,9 @@ function startApp(decks) {
     };
   }
 
+  //-----------------------------------------------------------------------------
+  // Event listeners
+
   $restartBtn.addEventListener('click', function() {
     showModal('choose');
   });
