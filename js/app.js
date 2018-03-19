@@ -11,6 +11,23 @@ const $helpBtn = document.querySelector('.help-btn')
 let game;
 
 //-----------------------------------------------------------------------------
+// Helper functions
+
+// Taken from https://stackoverflow.com/a/39914235/2897430
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function starsFromMoves(numberOfMoves) {
+  const tresholds = [13, 17, 21];
+  let i;
+  for(i = 0; i < tresholds.length; i++) {
+    if (numberOfMoves < tresholds[i]) break;
+  }
+  return 3 - i;
+}
+
+//-----------------------------------------------------------------------------
 // Timer
 
 function initializeTimer(element) {
@@ -71,11 +88,6 @@ function initializeTimer(element) {
 
 const timer = initializeTimer(document.querySelector('.time'));
 
-// Taken from https://stackoverflow.com/a/39914235/2897430
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 //-----------------------------------------------------------------------------
 // Cards
 
@@ -118,15 +130,6 @@ function getCard(event) {
       return card.classList.contains('show');
     }
   }
-}
-
-function starsFromMoves(numberOfMoves) {
-  const tresholds = [13, 17, 21];
-  let i;
-  for(i = 0; i < tresholds.length; i++) {
-    if (numberOfMoves < tresholds[i]) break;
-  }
-  return 3 - i;
 }
 
 //-----------------------------------------------------------------------------
