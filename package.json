@@ -1,0 +1,23 @@
+{
+  "name": "memory-game",
+  "version": "1.0.0",
+  "description": "Project for Udacity Front-End Nanodegree",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lukaszrozej/memory-game.git"
+  },
+  "keywords": [
+    "game",
+    "memory"
+  ],
+  "author": "Łukasz Rożej",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukaszrozej/memory-game/issues"
+  },
+  "homepage": "https://github.com/lukaszrozej/memory-game#readme"
+}
