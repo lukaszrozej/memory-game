@@ -357,6 +357,15 @@ body {
   .buttons {
     width: 40%;
   }
+
+  .card.sample {
+    width: 9vw;
+    padding-top: 9vw;
+  }
+
+  .sample-cards {
+    width: 100vw;
+  }
 }
 
 @media screen and (min-height: 700px) {
