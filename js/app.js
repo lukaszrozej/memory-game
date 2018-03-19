@@ -173,6 +173,10 @@ function startApp(decks) {
   //-----------------------------------------------------------------------------
   // Game
 
+  // This function holds all state variables describing currently played game
+  // and adds event listener that listens to clicks on cards
+  // It returns an object representing current game
+  //  with a method for removing the event listener
   function newGame() {
 
     const numberOfCards = 8;
