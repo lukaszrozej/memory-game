@@ -182,6 +182,11 @@ function initializeModal(decks) {
     $finalTime.textContent = timer.value().toString();
   }
 
+  // The show function uses await sleep
+  // to let the browser change class from currentSection to section
+  // and change modal's left position accordingly
+  // so that when show class is added
+  // transition is applied only to top position
   async function show(section) {
     $modal.classList.remove(currentSection);
     $modal.classList.add(section);
