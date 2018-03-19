@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/lukaszrozej/memory-game#readme",
   "devDependencies": {
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-svgstore": "^6.1.1",
+    "npm": "^5.7.1"
   }
 }
