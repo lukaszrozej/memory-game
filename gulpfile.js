@@ -22,25 +22,3 @@ gulp.task('default', function() {
     .pipe(svgstore())
     .pipe(gulp.dest('svg'));
 });
-
-// gulp.task('js', function(done) {
-//   const d = fs.readdirSync('sprites/decks')
-//     .map(function(deck) {
-//       return {
-//         name: deck,
-//         cards: fs.readdirSync(`sprites/decks/${deck}`)
-//           .map(card => card.replace('.svg', ''))
-//       }
-//     });
-//   const text = 'const decks =\n' + JSON.stringify(d, null, 2);
-//   fs.writeFileSync('js/decks.js', text);
-//   done();
-// });
-
-// gulp.task('default', function(taskDone) {
-//   runSequence(
-//     'svgs',
-//     'js', 
-//     taskDone
-//   );
-// });
