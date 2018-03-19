@@ -223,6 +223,15 @@ function startApp(decks) {
     timer.reset();
     updateScore();
 
+    // Handlles clicks on cards:
+    // flips cards, marksthem as matched or or not
+    // and detects if the game has ended
+    //
+    // It uses await and promises to make sure
+    // the previous animation finshes before next one starts
+    //
+    // All access to game state variables happens before all animations
+    // to avoid race conditions between different runs of clickHandler
     async function clickHandler(event) {
       const currentCard = getCard(event);
       if (!currentCard || currentCard.isFlipped()) return;
