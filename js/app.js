@@ -150,13 +150,6 @@ function startApp(decks) {
   const $resumeBtn = document.querySelector('.resume-btn')
   const $chooseADeckBtn = document.querySelector('.choose-a-deck-btn')
 
-  // What should receive focus in each section
-  const focusElement = {
-    win: $playAgainBtn,
-    choose: $decks,
-    help: $resumeBtn
-  };
-
   let currentSection = 'help';
 
   function updateSampleCards() {
@@ -194,6 +187,12 @@ function startApp(decks) {
   // so that when show class is added
   // transition is applied only to top position
   async function showModal(section) {
+    // What should receive focus in each section
+    const focusElement = {
+      win: $playAgainBtn,
+      choose: $decks,
+      help: $resumeBtn
+    };
     $modal.classList.remove(currentSection);
     $modal.classList.add(section);
     currentSection = section
