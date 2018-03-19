@@ -31,6 +31,7 @@ function startApp(decks) {
 
 
   let game;
+  let currentSection = 'help';
 
   //-----------------------------------------------------------------------------
   // Helper functions
@@ -101,7 +102,6 @@ function startApp(decks) {
   //-----------------------------------------------------------------------------
   // Modal
 
-  let currentSection = 'help';
 
   function updateSampleCards() {
     const deckNumber = $decks.value;
