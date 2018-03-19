@@ -82,12 +82,13 @@ h1 {
 
 .card.sample {
   margin: 1%;
-  width: 15vmin;
-  padding-top: 15vmin;
+  width: 12vmin;
+  padding-top: 12vmin;
 }
 
 .sample-cards {
-  width: 80%;
+  /*width: 80%;*/
+  width: 60vmin;
   max-width: 500px;
 }
 
@@ -240,7 +241,7 @@ h1 {
   background: white;
   text-align: center;
   line-height: 2em;
-  padding: 1em;
+  padding: 0 1em;
 }
 
 .modal.show {
