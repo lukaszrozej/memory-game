@@ -298,8 +298,8 @@ button {
 /* Footer */
 
 footer {
-  font-size: 0.8rem;
-  margin: 1rem auto;
+  font-size: 0.7rem;
+  margin: 0.5rem auto;
   padding-top: 0.5em;
   text-align: center;
   border-top: 1px solid #9cbfb4;
@@ -313,6 +313,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.footer-paragraph {
+  margin: 0.5em 0;
 }
 
 /*********************/
