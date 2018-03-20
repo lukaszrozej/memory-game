@@ -87,7 +87,6 @@ h1 {
 }
 
 .sample-cards {
-  /*width: 80%;*/
   width: 60vmin;
   max-width: 500px;
 }
@@ -224,10 +223,6 @@ h1 {
   transition: top 0.3s;
 }
 
-/*.modal.choose {
-  transition: all 0.3s;
-}
-*/
 .win-message,
 .choose-deck,
 .help-info {
