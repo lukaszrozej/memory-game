@@ -136,6 +136,7 @@ h1 {
   fill: currentColor;
 }
 
+/* Animations adapted from Animate.css */
 @keyframes matched {
   from {
     background-color: #7ff2f2;
