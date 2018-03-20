@@ -1,3 +1,6 @@
+// Returns an object representing a timer
+// element - a DOM element where time is displayed every second
+// when timer is running
 function initializeTimer(element) {
   let startTime = 0;
   let elapsedTime = 0;
