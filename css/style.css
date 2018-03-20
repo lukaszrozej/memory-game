@@ -91,6 +91,7 @@ h1 {
   max-width: 500px;
 }
 
+/* Card flip transition adapted from https://davidwalsh.name/css-flip */
 .back,
 .front {
   position: absolute;
