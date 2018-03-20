@@ -1,6 +1,6 @@
-function startApp(decks) {
+function startApp() {
   'use strict';
-  
+
   //-----------------------------------------------------------------------------
   // DOM elements
 
@@ -330,4 +330,4 @@ function startApp(decks) {
 
 }
 
-startApp(decks);
+startApp();
