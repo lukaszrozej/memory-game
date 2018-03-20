@@ -1,4 +1,4 @@
-function startApp() {
+(function startApp() {
   'use strict';
 
   //-----------------------------------------------------------------------------
@@ -328,6 +328,4 @@ function startApp() {
     }
   });
 
-}
-
-startApp();
+})();
