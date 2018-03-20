@@ -50,7 +50,11 @@ function initializeTimer(element) {
     },
 
     value() {
-      return elapsedTime;
+      if (running) {
+        return Math.round((Date.now() - startTime - totalPausedTime) / 1000);
+      } else {
+        return elapsedTime;
+      }
     }
   };
 }
