@@ -292,13 +292,15 @@ function startApp(decks) {
   //-----------------------------------------------------------------------------
   // Event listeners
 
-  $restartBtn.addEventListener('click', function() {
-    showModal('choose');
-  });
-
-  $helpBtn.addEventListener('click', function() {
-    timer.pause();
-    showModal('help');
+  document.querySelector('.buttons').addEventListener('click', function(event) {
+    switch (event.target) {
+      case $restartBtn:
+        showModal('choose');
+        break;
+      case $helpBtn:
+        timer.pause();
+        showModal('help');
+    }
   });
 
   $decks.addEventListener('change', function(event) {
